@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CPP 2202 · VB.Net Programming — Full Exam Guide</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box;
+      font-family:'Inter','Segoe UI',system-ui,sans-serif;
+      -webkit-tap-highlight-color:transparent; }
+  :root{
+    --primary:#1a2744;
+    --primary-light:#2a3b5f;
+    --accent:#b9852c;
+    --accent-light:#d4a04a;
+    --accent-soft:rgba(185,133,44,0.10);
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#1a2744;
+    --text-muted:#4b5a7a;
+    --text-light:#93a2c0;
+    --border:#e4e9f2;
+    --shadow:0 2px 10px rgba(26,39,68,0.06);
+    --code-bg:#0f1828;
+    --danger:#ef4444;
+    --success:#22c55e;
+    --warn:#f59e0b;
+    --info:#3b82f6;
+  }
+  html, body { background: var(--bg); }
+  body {
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .phone {
+    width: 100%;
+    max-width: 460px;
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: 16px 16px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.15);
+    position: sticky; top: 0; z-index: 20;
+  }
+  .back-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 15px;
+    cursor: pointer; text-decoration: none;
+    flex-shrink: 0;
+  }
+  .back-btn:active { transform: scale(0.95); }
+  .hdr-meta { flex: 1; min-width: 0; }
+  .hdr-code {
+    font-weight: 800; font-size: 10px;
+    color: var(--accent-light); letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hdr-title {
+    font-weight: 800; font-size: 14px;
+    color: #fff;
+    margin-top: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* TOPIC NAV (sticky) */
+  .tabbar {
+    display: flex; gap: 6px;
+    padding: 10px 16px;
+    overflow-x: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 69px; z-index: 19;
+  }
+  .tabbar::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-weight: 700; font-size: 10.5px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab:active { transform: scale(0.96); }
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(185,133,44,0.30);
+  }
+
+  /* CONTENT */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 16px 100px;
+  }
+  main::-webkit-scrollbar { width: 0; }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.2s; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CHAPTER HEADER */
+  .chapter-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chapter-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(185,133,44,0.15);
+  }
+  .chapter-num {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(185,133,44,0.20);
+    padding: 4px 10px; border-radius: 6px;
+    font-weight: 700; font-size: 9.5px;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid rgba(185,133,44,0.3);
+  }
+  .chapter-header h2 {
+    font-weight: 800; font-size: 18px;
+    color: #fff;
+    line-height: 1.25;
+    position: relative;
+    letter-spacing: -0.2px;
+  }
+  .chapter-header p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.78);
+    margin-top: 8px;
+    line-height: 1.55;
+    position: relative;
+  }
+
+  /* TOPIC BLOCK */
+  .topic {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .topic h3 {
+    font-weight: 800; font-size: 14px;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  .topic h3 .num {
+    width: 24px; height: 24px; border-radius: 7px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(185,133,44,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .topic h4 {
+    font-weight: 800; font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 14px 0 6px;
+  }
+  .topic p {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.65; margin-bottom: 10px;
+  }
+  .topic ul {
+    list-style: none; padding: 0;
+    margin: 8px 0;
+  }
+  .topic ul li {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.6;
+    padding: 4px 0 4px 20px;
+    position: relative;
+  }
+  .topic ul li::before {
+    content: '';
+    position: absolute; left: 6px; top: 12px;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .topic strong { color: var(--text); font-weight: 700; }
+  .topic em {
+    color: var(--accent);
+    font-style: normal; font-weight: 600;
+  }
+
+  /* CODE */
+  pre {
+    background: var(--code-bg);
+    border-radius: 10px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    margin: 10px 0;
+    font-family: 'Consolas','Courier New',monospace;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: #b9d4ff;
+    border: 1px solid #1a2744;
+  }
+  pre::-webkit-scrollbar { height: 4px; }
+  pre::-webkit-scrollbar-thumb { background: #2a3b5f; border-radius: 4px; }
+  code {
+    font-family: 'Consolas','Courier New',monospace;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: 11.5px;
+  }
+
+  /* TABLES */
+  .kv {
+    width: 100%; border-collapse: collapse;
+    margin: 10px 0; font-size: 12.5px;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .kv th, .kv td {
+    padding: 9px 11px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .kv th {
+    font-weight: 800; font-size: 10.5px;
+    color: var(--accent);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    background: var(--accent-soft);
+  }
+  .kv tr:last-child td { border-bottom: none; }
+  .kv td:first-child {
+    color: var(--text); font-weight: 600;
+  }
+  .kv code { font-size: 11px; }
+
+  /* CALLOUTS */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+    margin: 12px 0;
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .callout strong {
+    display: block;
+    font-weight: 800; font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .callout.danger {
+    background: rgba(239,68,68,0.08);
+    border-left-color: var(--danger);
+  }
+  .callout.danger strong { color: var(--danger); }
+  .callout.success {
+    background: rgba(34,197,94,0.08);
+    border-left-color: var(--success);
+  }
+  .callout.success strong { color: #15803d; }
+  .callout.info {
+    background: rgba(59,130,246,0.08);
+    border-left-color: var(--info);
+  }
+  .callout.info strong { color: var(--info); }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%; max-width: 460px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    gap: 10px;
+    box-shadow: 0 -4px 16px rgba(26,39,68,0.06);
+    z-index: 30;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 11.5px;
+    cursor: pointer;
+    transition: 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .nav-btn.primary {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .nav-btn:active { transform: scale(0.97); }
+
+  /* TOPIC PROGRESS INDICATOR */
+  .topic-count {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 10.5px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <header>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+    <div class="hdr-meta">
+      <div class="hdr-code">CPP 2202</div>
+      <div class="hdr-title">VB.Net Programming · Full Guide</div>
+    </div>
+  </header>
+
+  <div class="tabbar">
+    <div class="tab active" data-tab="intro">Intro</div>
+    <div class="tab" data-tab="basics">Basics</div>
+    <div class="tab" data-tab="controls">Controls</div>
+    <div class="tab" data-tab="vars">Variables</div>
+    <div class="tab" data-tab="decisions">Decisions</div>
+    <div class="tab" data-tab="menus">Menus</div>
+    <div class="tab" data-tab="loops">Loops</div>
+    <div class="tab" data-tab="arrays">Arrays</div>
+    <div class="tab" data-tab="db">Database</div>
+    <div class="tab" data-tab="smart">Smart Devices</div>
+    <div class="tab" data-tab="exam">Exam Tips</div>
+  </div>
+
+  <main>
+
+    <!-- ============ INTRO ============ -->
+    <div class="section active" id="intro">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-info-circle"></i> Chapter 1</div>
+        <h2>Introduction to Visual Basic</h2>
+        <p>This chapter covers object-oriented terminology and concepts, the basic files comprising a VB project, the Visual Studio IDE, and the first hands-on project introducing objects, properties, and methods.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> What VB.Net Is</h3>
+        <p>VB.Net is a programming language inside Microsoft Visual Studio. It is <strong>object-oriented</strong> (you work with objects) and <strong>event-driven</strong> (code responds to user actions). You build Windows Forms Applications that run on the .NET Framework.</p>
+        <h4>How code runs</h4>
+        <ul>
+          <li>You write human-readable code in VB</li>
+          <li>Code compiles to <strong>MSIL</strong> (Microsoft Intermediate Language)</li>
+          <li>MSIL runs inside the <strong>CLR</strong> (Common Language Runtime) — a component of the .NET Framework</li>
+          <li>Visual Studio includes several languages: VB, C#, C++, F#, ASP.NET — all compile to the same MSIL</li>
+        </ul>
+        <h4>Editions of VB</h4>
+        <ul>
+          <li><strong>Express Edition</strong> — free, downloadable</li>
+          <li><strong>Professional, Premium, Ultimate</strong> — used in industry</li>
+          <li>VB 10 is the current version. VB 6 and earlier are NOT .NET-compatible</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> The 3 Mandatory/Optional Components</h3>
+        <table class="kv">
+          <tr><th>Component</th><th>Role</th><th>Required?</th></tr>
+          <tr><td>.NET Framework Class Library</td><td>Predefined class objects (forms, textboxes, buttons)</td><td>Mandatory</td></tr>
+          <tr><td>Common Language Runtime (CLR)</td><td>Manages execution of any language in Visual Studio</td><td>Mandatory</td></tr>
+          <tr><td>MSDN (Help)</td><td>Help reference library</td><td>Optional but recommended</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Core OOP Terminology (MEMORIZE)</h3>
+        <table class="kv">
+          <tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td>Object</td><td>A thing (noun)</td><td>Form, Button, TextBox</td></tr>
+          <tr><td>Property</td><td>Describes the object (adjective)</td><td><code>TextBox.Text</code>, <code>Label.ForeColor</code></td></tr>
+          <tr><td>Method</td><td>Action the object does (verb)</td><td><code>Me.Close()</code>, <code>TextBox.Clear()</code></td></tr>
+          <tr><td>Event</td><td>Action triggered by user/system</td><td>Click, Load, TextChanged</td></tr>
+          <tr><td>Class</td><td>Template for an object</td><td>Form class, Button class</td></tr>
+          <tr><td>Class Instance</td><td>A new object created from a class</td><td>Form1, DisplayButton</td></tr>
+        </table>
+        <div class="callout info">
+          <strong>Dot notation</strong>
+          Refer to a property with <code>ObjectName.PropertyName</code>. Refer to a method with <code>ObjectName.MethodName()</code>.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> The IDE Windows You'll Use</h3>
+        <table class="kv">
+          <tr><th>Window</th><th>What It Does</th></tr>
+          <tr><td>Form Designer</td><td>Visual layout of your form (drag controls here)</td></tr>
+          <tr><td>Solution Explorer</td><td>Lists project files and folders</td></tr>
+          <tr><td>Properties Window</td><td>Set properties of selected control</td></tr>
+          <tr><td>Toolbox</td><td>Drag controls onto the form</td></tr>
+          <tr><td>Code View</td><td>Where you write code — press F7</td></tr>
+        </table>
+        <h4>Switching between views</h4>
+        <ul>
+          <li><strong>F7</strong> — go to Code View</li>
+          <li><strong>Shift + F7</strong> — go to Designer View</li>
+          <li><strong>Reset Window Layout</strong> — Window menu → Reset Window Layout</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> Naming Rules &amp; Conventions</h3>
+        <h4>Rules (VB enforces these)</h4>
+        <ul>
+          <li>Must begin with a letter or underscore</li>
+          <li>Can include letters, digits, underscores</li>
+          <li>Cannot include spaces or punctuation</li>
+          <li>Cannot be a VB reserved word (Button, Close, TextBox, etc.)</li>
+        </ul>
+        <h4>Pascal Naming Convention (this course uses this)</h4>
+        <ul>
+          <li>Begin with an uppercase letter</li>
+          <li>Capitalize each word in the name</li>
+          <li>Append the control type to the end: <code>NameTextBox</code>, <code>ComputeButton</code>, <code>ExitButton</code></li>
+          <li>Avoid abbreviations unless standard: <code>SSN</code> is fine</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Three Modes of Operation</h3>
+        <table class="kv">
+          <tr><th>Mode</th><th>When</th></tr>
+          <tr><td>Design Time</td><td>Building the form in the IDE</td></tr>
+          <tr><td>Run Time</td><td>Program executing</td></tr>
+          <tr><td>Break Time</td><td>Paused during debugging</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Program Errors</h3>
+        <table class="kv">
+          <tr><th>Error Type</th><th>When It Happens</th></tr>
+          <tr><td>Syntax Error</td><td>Code is malformed. VB shows a blue squiggly line. Fix before running.</td></tr>
+          <tr><td>Run-Time Error</td><td>Occurs while the program is running (e.g., divide by zero)</td></tr>
+          <tr><td>Logic Error</td><td>Program runs but produces wrong output</td></tr>
+        </table>
+        <p>The <strong>Error List</strong> window (View → Error List) shows errors and warnings. A <strong>Clean Compile</strong> means no errors — use Build → Rebuild to recompile.</p>
+      </div>
+    </div>
+
+    <!-- ============ BASICS (Ch 1 code) ============ -->
+    <div class="section" id="basics">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-code"></i> Chapter 1 Code</div>
+        <h2>Your First Program</h2>
+        <p>The smallest working VB.Net program: a form with buttons that display information to read-only textboxes, a Reset button, a Print button, and an Exit button.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> The Event Sub Procedure</h3>
+        <p>Double-clicking a control in the Designer generates a sub procedure for its default event:</p>
+        <pre><code>Private Sub Display1Button_Click(ByVal sender As System.Object, _
+                                ByVal e As System.EventArgs) _
+                                Handles Display1Button.Click
+    ' Your code goes here
+End Sub</code></pre>
+        <h4>Breaking down the signature</h4>
+        <ul>
+          <li><strong>Private</strong> — scope keyword</li>
+          <li><strong>Sub</strong> — this is a sub procedure (no return value)</li>
+          <li><strong>Display1Button_Click</strong> — VB auto-generates: controlname_eventname</li>
+          <li><strong>(ByVal sender As Object, ByVal e As EventArgs)</strong> — two parameters (ignore for now)</li>
+          <li><strong>Handles Display1Button.Click</strong> — tells VB "run this when this button is clicked"</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> The Remark Statement</h3>
+        <p>Remarks begin with a single quote <code>'</code> and show in green. VB ignores them — they're for humans.</p>
+        <pre><code>'Project: Ch01VBUniversity
+'D. Bock
+'Today's date
+'Illustrates displaying information to read-only textbox controls</code></pre>
+        <p>Always place remarks before the <code>Public Class</code> statement — identify the project, you, and the date.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> The Assignment Statement</h3>
+        <pre><code>Object.Property = Value</code></pre>
+        <p>The value on the right of <code>=</code> is assigned to the property on the left.</p>
+        <pre><code>NameTextBox.Text = "Douglas Bock"
+MajorTextBox.Text = "Computer Management & Information Systems"</code></pre>
+        <p>Text values must be inside double quotes: <code>"Douglas Bock"</code>.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Common Methods</h3>
+        <table class="kv">
+          <tr><th>Method</th><th>What It Does</th></tr>
+          <tr><td><code>NameTextBox.Clear()</code></td><td>Clear contents of a TextBox</td></tr>
+          <tr><td><code>Me.Close()</code></td><td>Close the current form (Me = current form)</td></tr>
+          <tr><td><code>NameTextBox.Focus()</code></td><td>Put cursor in a control</td></tr>
+          <tr><td><code>NameTextBox.SelectAll()</code></td><td>Highlight all text in a control</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> PrintForm Component</h3>
+        <p>Add from Toolbox → Visual Basic PowerPacks. It sits in the component tray. Code:</p>
+        <pre><code>PrintForm1.PrintAction = Printing.PrintAction.PrintToPreview
+PrintForm1.Print()</code></pre>
+        <p>Options: <code>PrintToPrinter</code>, <code>PrintToFile</code>, <code>PrintToPreview</code>.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Saving &amp; Running Projects</h3>
+        <ul>
+          <li><strong>Save All button</strong> — saves entire project. NEVER use File → Save As (it saves only one file)</li>
+          <li><strong>F5</strong> — run the project</li>
+          <li><strong>Ctrl+Shift+B</strong> — build (compile)</li>
+          <li>Save to My Documents or C:\Temp</li>
+        </ul>
+        <div class="callout danger">
+          <strong>Backup rule</strong>
+          Exit VB first, then copy the entire solution folder to your flash drive. Otherwise project files are missing.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Complete First Program (Solution)</h3>
+        <pre><code>Public Class StudentInfo
+
+    Private Sub Display1Button_Click(ByVal sender As System.Object, _
+                                    ByVal e As System.EventArgs) _
+                                    Handles Display1Button.Click
+        NameTextBox.Text = "Douglas Bock"
+        MajorTextBox.Text = "Computer Management & Information Systems"
+    End Sub
+
+    Private Sub ResetButton_Click(ByVal sender As System.Object, _
+                                 ByVal e As System.EventArgs) _
+                                 Handles ResetButton.Click
+        NameTextBox.Clear()
+        MajorTextBox.Clear()
+    End Sub
+
+    Private Sub ExitButton_Click(ByVal sender As System.Object, _
+                                ByVal e As System.EventArgs) _
+                                Handles ExitButton.Click
+        Me.Close()
+    End Sub
+
+End Class</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ CONTROLS ============ -->
+    <div class="section" id="controls">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-sliders"></i> Chapter 2</div>
+        <h2>User Interface Design</h2>
+        <p>Additional controls: TextBox, MaskedTextBox, RichTextBox, GroupBox, CheckBox, RadioButton, PictureBox. Plus form layout, colors, tab order, and tool tips.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> All Controls You Must Know</h3>
+        <table class="kv">
+          <tr><th>Control</th><th>Purpose</th><th>Key Properties</th></tr>
+          <tr><td>Label</td><td>Display text user can't change</td><td>Text</td></tr>
+          <tr><td>TextBox</td><td>Input/output text</td><td>Text, ReadOnly, MultiLine, TabStop</td></tr>
+          <tr><td>MaskedTextBox</td><td>Formatted input (phone, SSN, zip)</td><td>Mask</td></tr>
+          <tr><td>RichTextBox</td><td>Text with formatting</td><td>WordWrap, MultiLine</td></tr>
+          <tr><td>GroupBox</td><td>Groups controls together</td><td>Text</td></tr>
+          <tr><td>RadioButton</td><td>Choose ONE from a group</td><td>Checked, Text</td></tr>
+          <tr><td>CheckBox</td><td>Choose ANY number</td><td>Checked, Text</td></tr>
+          <tr><td>PictureBox</td><td>Display images</td><td>Image, SizeMode, Visible</td></tr>
+          <tr><td>Button</td><td>Trigger actions</td><td>Text, Enabled</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> TextBox Properties in Detail</h3>
+        <table class="kv">
+          <tr><th>Property</th><th>Purpose</th></tr>
+          <tr><td>Text</td><td>The actual text in the control</td></tr>
+          <tr><td>ReadOnly</td><td>True = user can't type (use for output)</td></tr>
+          <tr><td>TabStop</td><td>False = skip in tab order</td></tr>
+          <tr><td>MultiLine</td><td>True = multiple lines of text</td></tr>
+          <tr><td>WordWrap</td><td>True = wraps long text (default)</td></tr>
+          <tr><td>ForeColor</td><td>Color of the text</td></tr>
+          <tr><td>BackColor</td><td>Color of the background</td></tr>
+          <tr><td>TextAlign</td><td>Left, Right, Center (Left is default)</td></tr>
+        </table>
+        <div class="callout info">
+          <strong>Convention</strong>
+          Output TextBoxes: ReadOnly = True, TabStop = False, TextAlign = Right. This prevents users from typing into output fields.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> MaskedTextBox</h3>
+        <p>A special TextBox that enforces a format. Common masks:</p>
+        <table class="kv">
+          <tr><th>Mask</th><th>Format</th></tr>
+          <tr><td>Phone number</td><td>(254) 123-4567</td></tr>
+          <tr><td>SSN</td><td>999-99-9999</td></tr>
+          <tr><td>Zip Code</td><td>99999-9999</td></tr>
+          <tr><td>Short date</td><td>99/99/9999</td></tr>
+        </table>
+        <p>Set the Mask property from the Properties window — click the "..." ellipse button.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> RadioButton vs CheckBox (CRITICAL)</h3>
+        <table class="kv">
+          <tr><th>Feature</th><th>RadioButton</th><th>CheckBox</th></tr>
+          <tr><td>Selection</td><td>ONE only</td><td>Any number</td></tr>
+          <tr><td>Primary event</td><td>CheckedChanged</td><td>CheckedChanged</td></tr>
+          <tr><td>Must be in GroupBox?</td><td>Yes, to form a group</td><td>No</td></tr>
+          <tr><td>Default checked</td><td>One in each group</td><td>Set each individually</td></tr>
+        </table>
+        <div class="callout danger">
+          <strong>Exam trap #1</strong>
+          RadioButtons and CheckBoxes use the <code>CheckedChanged</code> event, NOT Click. Click exists but isn't used in this course.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> Common Code Patterns</h3>
+        <pre><code>' Clear a control
+NameTextBox.Clear()
+NameTextBox.Text = String.Empty
+NameTextBox.Text = ""
+
+' Focus and select
+NameTextBox.Focus()
+NameTextBox.SelectAll()
+
+' Colors (from the Color enumeration)
+Me.BackColor = Color.Red
+Me.ForeColor = Color.White
+NameTextBox.BackColor = Color.White
+
+' Check/uncheck
+BlackRadioButton.Checked = True
+MessageCheckBox.Checked = False
+
+' Show/hide
+SunPictureBox.Visible = True
+SnowPictureBox.Visible = False
+
+' Concatenation (& joins strings)
+OutputTextBox.Text = "My name: " & NameTextBox.Text & _
+                    ControlChars.NewLine & "Major: " & MajorTextBox.Text
+
+' ControlChars.NewLine = start a new line</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> The With...End With Statement</h3>
+        <p>Shortens code when setting many properties on one control. Executes slightly faster too.</p>
+        <pre><code>With NameTextBox
+    .Visible = True
+    .ForeColor = Color.Black
+    .BackColor = Color.White
+    .Focus()
+End With</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Form Properties You Must Know</h3>
+        <table class="kv">
+          <tr><th>Property</th><th>Purpose</th></tr>
+          <tr><td>Text</td><td>Form's title bar</td></tr>
+          <tr><td>StartPosition</td><td>Set to CenterScreen to center on monitor</td></tr>
+          <tr><td>AcceptButton</td><td>Which button the Enter key triggers</td></tr>
+          <tr><td>CancelButton</td><td>Which button the ESC key triggers</td></tr>
+          <tr><td>BackColor / ForeColor</td><td>Form background/text colors</td></tr>
+          <tr><td>Font</td><td>Default font for all controls on form</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> Tab Order</h3>
+        <ul>
+          <li>View menu → Tab Order to see the current order</li>
+          <li>Click numbers to change the order</li>
+          <li>Tabbing should flow <strong>left to right, top to bottom</strong></li>
+          <li>TabIndex property holds the number (starts at 0)</li>
+          <li>TabStop = False removes a control from the tab order</li>
+          <li>Labels can have tab numbers but can't receive focus</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Hot Keys (Keyboard Access Keys)</h3>
+        <p>Put <code>&amp;</code> before a letter in the Text property to underline it. That letter becomes the Alt+letter shortcut.</p>
+        <pre><code>' Button text
+"E&xit"          → Alt+X triggers it
+"&Reset"         → Alt+R
+"Display Student &1"  → Alt+1
+
+' Labels can have hot keys too
+"&Name:"         → Alt+N moves focus to the next control (the TextBox)</code></pre>
+        <p>Never use the same hot key twice on a form.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> ToolTips</h3>
+        <ul>
+          <li>Add one ToolTip control per form (from Toolbox → Components)</li>
+          <li>It appears in the component tray as <code>ToolTip1</code></li>
+          <li>Every control gets a new property: <code>ToolTip on ToolTip1</code></li>
+          <li>Type the tip text into that property</li>
+          <li>At run time, hover the mouse to see the tip</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> Full ResetButton Example</h3>
+        <pre><code>Private Sub ResetButton_Click(ByVal sender As System.Object, _
+                             ByVal e As System.EventArgs) _
+                             Handles ResetButton.Click
+    ' Clear inputs
+    NameTextBox.Clear()
+    MajorTextBox.Text = String.Empty
+    PhoneMaskedTextBox.Clear()
+    OutputTextBox.Text = ""
+
+    ' Reset form colors
+    GrayRadioButton.Checked = True
+    BlackRadioButton.Checked = True
+
+    ' Reset checkbox
+    MessageCheckBox.Checked = True
+
+    ' Reset images
+    SunPictureBox.Visible = True
+    SnowPictureBox.Visible = False
+
+    ' Focus first control
+    NameTextBox.Focus()
+End Sub</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ VARIABLES ============ -->
+    <div class="section" id="vars">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-superscript"></i> Chapter 3</div>
+        <h2>Variables, Constants &amp; Calculations</h2>
+        <p>Data types, scope, the Input-Process-Output model, arithmetic operators, order of precedence, and error handling.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> All Data Types</h3>
+        <table class="kv">
+          <tr><th>Type</th><th>Stores</th><th>Bytes</th><th>Suffix</th></tr>
+          <tr><td>String</td><td>Alphanumeric text</td><td>varies</td><td>—</td></tr>
+          <tr><td>Char</td><td>Single Unicode character</td><td>2</td><td>—</td></tr>
+          <tr><td>Decimal</td><td>Money / fixed decimal</td><td>16</td><td>D</td></tr>
+          <tr><td>Double</td><td>Big float (14 digits)</td><td>8</td><td>R</td></tr>
+          <tr><td>Single</td><td>Small float (6 digits)</td><td>4</td><td>F</td></tr>
+          <tr><td>Integer</td><td>Whole numbers</td><td>4</td><td>I</td></tr>
+          <tr><td>Long</td><td>Very large whole</td><td>8</td><td>L</td></tr>
+          <tr><td>Short</td><td>Small whole</td><td>2</td><td>S</td></tr>
+          <tr><td>Boolean</td><td>True / False</td><td>2</td><td>—</td></tr>
+          <tr><td>Date</td><td>Dates/times</td><td>8</td><td>—</td></tr>
+          <tr><td>Byte</td><td>0 to 255</td><td>1</td><td>—</td></tr>
+        </table>
+        <div class="callout info">
+          <strong>Business apps use</strong>
+          String, Decimal, Single, Integer — these cover 95% of what you'll need.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Declaring Variables &amp; Constants</h3>
+        <pre><code>' Local variables (visible inside one procedure)
+Dim PriceDecimal As Decimal
+Dim CountInteger As Integer = 0
+Dim NameString, MajorString As String
+
+' Module-level variables (visible to all procedures on this form)
+Private TotalSalesDecimal As Decimal
+Private TotalQuantityInteger As Integer
+
+' Constants (cannot change)
+Const SALES_TAX_RATE_SINGLE As Single = 0.0725F
+Const MAX_SIZE_INTEGER As Integer = 4000
+Const TITLE_STRING As String = "Data Entry Error"</code></pre>
+        <h4>Default values when declared without an initial value</h4>
+        <ul>
+          <li>Numeric types → 0</li>
+          <li>String → empty string <code>""</code></li>
+          <li>Boolean → False</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Scope — 4 Levels</h3>
+        <table class="kv">
+          <tr><th>Level</th><th>Keyword</th><th>Visibility</th></tr>
+          <tr><td>Namespace</td><td>Public</td><td>Entire project (all forms)</td></tr>
+          <tr><td>Module</td><td>Private</td><td>All procedures on one form</td></tr>
+          <tr><td>Local</td><td>Dim</td><td>Only inside one procedure</td></tr>
+          <tr><td>Block</td><td>Dim</td><td>Only inside a small block</td></tr>
+        </table>
+        <div class="callout danger">
+          <strong>Danger</strong>
+          If you name a module-level and local variable the same, VB creates TWO different variables. Avoid this.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Naming Rules &amp; Conventions</h3>
+        <h4>Rules</h4>
+        <ul>
+          <li>Letters, digits, underscore; must begin with a letter</li>
+          <li>No spaces, no periods</li>
+          <li>Cannot be a VB reserved word (DIM, CONST, PRINT, LET)</li>
+          <li>Case-insensitive: <code>total</code> = <code>TOTAL</code> = <code>Total</code></li>
+        </ul>
+        <h4>Conventions (this course)</h4>
+        <ul>
+          <li>Variables: <code>AmountDueDecimal</code>, <code>StudentNameString</code> (Pascal casing)</li>
+          <li>Constants: <code>TAX_RATE_SINGLE</code>, <code>BIG_STATE_NAME_STRING</code> (UPPERCASE)</li>
+          <li>Always end with the data type — makes code self-documenting</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> The Input-Process-Output Model</h3>
+        <p>Every computing program follows this three-step pattern.</p>
+        <h4>INPUT — parse textbox values into memory variables</h4>
+        <pre><code>Dim PriceDecimal As Decimal = Decimal.Parse( _
+    PriceTextBox.Text, Globalization.NumberStyles.Currency)
+
+Dim QuantityInteger As Integer = Integer.Parse( _
+    QuantityTextBox.Text, Globalization.NumberStyles.Number)</code></pre>
+        <p><strong>Globalization.NumberStyles.Currency</strong> allows a "$" and commas. Without it, "$1,234.56" won't parse.</p>
+
+        <h4>PROCESS — compute output values</h4>
+        <pre><code>SubtotalDecimal = PriceDecimal * QuantityInteger
+SalesTaxDecimal = Decimal.Round( _
+    Convert.ToDecimal(SubtotalDecimal * SALES_TAX_RATE_SINGLE), 2)
+TotalDueDecimal = SubtotalDecimal + SalesTaxDecimal</code></pre>
+
+        <h4>OUTPUT — format and display</h4>
+        <pre><code>SubtotalTextBox.Text = SubtotalDecimal.ToString("C")
+SalesTaxTextBox.Text = SalesTaxDecimal.ToString("N")
+TotalDueTextBox.Text = TotalDueDecimal.ToString("C")</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Numeric Literal Suffixes</h3>
+        <p>Attach a suffix to a number to force a data type:</p>
+        <table class="kv">
+          <tr><th>Suffix</th><th>Data Type</th><th>Example</th></tr>
+          <tr><td>D</td><td>Decimal</td><td><code>40.45D</code></td></tr>
+          <tr><td>R</td><td>Double</td><td><code>12576.877R</code></td></tr>
+          <tr><td>I</td><td>Integer</td><td><code>47852I</code></td></tr>
+          <tr><td>L</td><td>Long</td><td><code>9888444222L</code></td></tr>
+          <tr><td>S</td><td>Short</td><td><code>2588S</code></td></tr>
+          <tr><td>F</td><td>Single</td><td><code>0.0725F</code></td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Converting Values</h3>
+        <h4>From textbox (String → Number)</h4>
+        <pre><code>' Using Parse (preferred with Option Strict On)
+PriceDecimal = Decimal.Parse(PriceTextBox.Text, _
+                             Globalization.NumberStyles.Currency)
+QuantityInteger = Integer.Parse(QuantityTextBox.Text, _
+                                Globalization.NumberStyles.Number)
+
+' Older VB functions (still work)
+PriceDecimal = CDec(PriceTextBox.Text)
+QuantityInteger = CInt(QuantityTextBox.Text)</code></pre>
+
+        <h4>From number to number (Explicit Conversion / Casting)</h4>
+        <table class="kv">
+          <tr><th>Convert To</th><th>Code</th></tr>
+          <tr><td>Decimal</td><td><code>Convert.ToDecimal(ValueSingle)</code></td></tr>
+          <tr><td>Single</td><td><code>Convert.ToSingle(ValueDecimal)</code></td></tr>
+          <tr><td>Double</td><td><code>Convert.ToDouble(ValueDecimal)</code></td></tr>
+          <tr><td>Short</td><td><code>Convert.ToInt16(ValueSingle)</code></td></tr>
+          <tr><td>Integer</td><td><code>Convert.ToInt32(ValueSingle)</code></td></tr>
+          <tr><td>Long</td><td><code>Convert.ToInt64(ValueDouble)</code></td></tr>
+        </table>
+
+        <h4>To string for output</h4>
+        <pre><code>SubtotalTextBox.Text = SubtotalDecimal.ToString("N2")
+SalesTaxTextBox.Text = SalesTaxDecimal.ToString("C2")
+QuantityTextBox.Text = QuantityInteger.ToString("N0")</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> Output Format Codes</h3>
+        <table class="kv">
+          <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td>C</td><td>Currency</td><td>$1,234.56</td></tr>
+          <tr><td>C0</td><td>Currency, no decimals</td><td>$1,235</td></tr>
+          <tr><td>C2</td><td>Currency with 2 decimals</td><td>$1,234.56</td></tr>
+          <tr><td>N</td><td>Number with commas</td><td>1,234.56</td></tr>
+          <tr><td>N0</td><td>Number, no decimals</td><td>1,235</td></tr>
+          <tr><td>N4</td><td>Number with 4 decimals</td><td>1,234.5678</td></tr>
+          <tr><td>F</td><td>Fixed-point</td><td>1234.56</td></tr>
+          <tr><td>D</td><td>Integer digits</td><td>00042</td></tr>
+          <tr><td>P</td><td>Percent</td><td>7.25%</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Arithmetic Operators</h3>
+        <table class="kv">
+          <tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td>+</td><td>Addition</td><td>2 + 3 = 5</td></tr>
+          <tr><td>-</td><td>Subtraction</td><td>5 - 3 = 2</td></tr>
+          <tr><td>*</td><td>Multiplication</td><td>4 * 5 = 20</td></tr>
+          <tr><td>/</td><td>Division</td><td>10 / 4 = 2.5</td></tr>
+          <tr><td>^</td><td>Exponentiation</td><td>2 ^ 3 = 8 (returns Double)</td></tr>
+          <tr><td>\</td><td>Integer division</td><td>130 \ 60 = 2</td></tr>
+          <tr><td>Mod</td><td>Remainder</td><td>500 Mod 60 = 20</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> Order of Precedence</h3>
+        <ol style="list-style:decimal; padding-left:20px; color:var(--text-muted); font-size:13px; line-height:1.7;">
+          <li>Parentheses <code>()</code></li>
+          <li>Exponentiation <code>^</code></li>
+          <li>Multiplication / Division <code>* /</code></li>
+          <li>Integer division <code>\</code></li>
+          <li>Modulus <code>Mod</code></li>
+          <li>Addition / Subtraction <code>+ -</code></li>
+        </ol>
+        <div class="callout info">
+          <strong>Example</strong>
+          <code>(5 + 6) * 2 = 22</code> because parentheses force addition first.<br>
+          <code>5 + 6 * 2 = 17</code> because multiplication wins.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> Assignment Operators</h3>
+        <pre><code>' Standard
+ItemValueDecimal = QuantityInteger * PriceDecimal
+HoursWorkedSingle = MinutesWorkedSingle / 60F
+NetProfitDecimal = GrossSalesDecimal - CostGoodsSoldDecimal
+
+' Accumulator (+=)
+TotalSalesDecimal += SaleAmountDecimal
+' Same as: TotalSalesDecimal = TotalSalesDecimal + SaleAmountDecimal
+
+' Decrement (-=)
+CountInteger -= 1
+' Same as: CountInteger = CountInteger - 1</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">12</span> Option Strict &amp; Option Explicit</h3>
+        <table class="kv">
+          <tr><th>Option</th><th>Default</th><th>Effect</th></tr>
+          <tr><td>Option Explicit</td><td>ON</td><td>Forces you to declare all variables</td></tr>
+          <tr><td>Option Strict</td><td>OFF</td><td>ON forces you to convert data types explicitly</td></tr>
+        </table>
+        <p>This course uses <strong>Option Strict On</strong>. Place it after the header comments, before <code>Public Class</code>.</p>
+        <pre><code>'Project: Ch03VBUniversity
+'D. Bock
+'Today's Date
+
+Option Strict On
+
+Public Class Books
+    ' ...
+End Class</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">13</span> Rounding with Decimal.Round</h3>
+        <pre><code>SalesTaxDecimal = Decimal.Round( _
+    SALES_TAX_RATE_DECIMAL * AmountSoldDecimal, 2)</code></pre>
+        <p>Always round the result of multiplication, division, and exponentiation. Simple addition and subtraction don't need rounding.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">14</span> Exception Handling (Try-Catch)</h3>
+        <pre><code>Try
+    ' Code that might fail
+    QuantityInteger = Integer.Parse(QuantityTextBox.Text, _
+                                    Globalization.NumberStyles.Number)
+    PriceDecimal = Decimal.Parse(PriceTextBox.Text, _
+                                 Globalization.NumberStyles.Currency)
+    ' ... rest of processing
+Catch ex As Exception
+    MessageBox.Show("Error in either Book Price or Quantity Purchased", _
+                    "Data Entry Error", _
+                    MessageBoxButtons.OK, MessageBoxIcon.Error)
+    PriceTextBox.Focus()
+End Try</code></pre>
+        <h4>Common exceptions</h4>
+        <table class="kv">
+          <tr><th>Exception</th><th>Cause</th></tr>
+          <tr><td>FormatException</td><td>Data conversion failed (Integer.Parse failed)</td></tr>
+          <tr><td>InvalidCastException</td><td>Illegal type conversion</td></tr>
+          <tr><td>ArithmeticException</td><td>Divide by zero</td></tr>
+          <tr><td>OutOfMemoryException</td><td>Not enough memory</td></tr>
+          <tr><td>Exception</td><td>Catch-all (generic)</td></tr>
+        </table>
+        <div class="callout danger">
+          <strong>Order matters</strong>
+          Catch from specific to general. If you put <code>Catch ex As Exception</code> first, the specific ones never run.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">15</span> Enabling / Disabling Buttons</h3>
+        <pre><code>ComputeButton.Enabled = False
+ResetButton.Enabled = True</code></pre>
+        <p>Common pattern: Reset button disabled at start. After Compute succeeds, disable Compute, enable Reset.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">16</span> Sums, Counts, Averages</h3>
+        <pre><code>' Sum
+TotalSalesDecimal += TotalDueDecimal
+
+' Count
+TotalQuantityInteger += QuantityInteger
+' or just:
+TotalQuantityInteger += 1
+
+' Average
+AverageSaleDecimal = TotalSalesDecimal / TotalQuantityInteger</code></pre>
+        <p>For sums and counts that must persist across button clicks, use <strong>module-level</strong> variables.</p>
+      </div>
+    </div>
+
+    <!-- ============ DECISIONS ============ -->
+    <div class="section" id="decisions">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-code-branch"></i> Chapter 4</div>
+        <h2>Decisions and Conditions</h2>
+        <p>If statements, logical operators, Select Case, data validation, debugging, and the full payroll computation.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> Relational Operators</h3>
+        <table class="kv">
+          <tr><th>Operator</th><th>Meaning</th></tr>
+          <tr><td>&gt;</td><td>greater than</td></tr>
+          <tr><td>&lt;</td><td>less than</td></tr>
+          <tr><td>=</td><td>equal to</td></tr>
+          <tr><td>&lt;&gt;</td><td>not equal to</td></tr>
+          <tr><td>&gt;=</td><td>greater than or equal to</td></tr>
+          <tr><td>&lt;=</td><td>less than or equal to</td></tr>
+        </table>
+        <p>Always compare like types: string to string, decimal to decimal, etc.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Block If Statement Rules</h3>
+        <ul>
+          <li>Must end with <code>End If</code></li>
+          <li><code>Then</code> must be on the same line as <code>If</code></li>
+          <li><code>Else</code> and <code>End If</code> on their own lines</li>
+          <li><code>Else</code> branch is optional</li>
+          <li>VB auto-indents 4 spaces</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> If Patterns</h3>
+        <h4>Single condition (no Else)</h4>
+        <pre><code>If MedicalCheckBox.Checked Then
+    BenefitsCostDecimal += MEDICAL_RATE_DECIMAL
+End If</code></pre>
+
+        <h4>If-Else (both branches)</h4>
+        <pre><code>If HoursDecimal <= 40D Then
+    GrossPayDecimal = Decimal.Round(HoursDecimal * PayRateDecimal, 2)
+Else
+    GrossPayDecimal = Decimal.Round( _
+        (40D * PayRateDecimal) + _
+        ((HoursDecimal - 40D) * PayRateDecimal * 1.5D), 2)
+End If</code></pre>
+
+        <h4>If-ElseIf-Else (multiple branches)</h4>
+        <pre><code>If GrossPayDecimal <= TAX_LEVEL_08_DECIMAL Then
+    FederalTaxDecimal = Decimal.Round(TAX_RATE_08_DECIMAL * GrossPayDecimal, 2)
+ElseIf GrossPayDecimal <= TAX_LEVEL_18_DECIMAL Then
+    FederalTaxDecimal = Decimal.Round(TAX_RATE_18_DECIMAL * GrossPayDecimal, 2)
+Else
+    FederalTaxDecimal = Decimal.Round(TAX_RATE_28_DECIMAL * GrossPayDecimal, 2)
+End If</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Logical Operators (MEMORIZE)</h3>
+        <table class="kv">
+          <tr><th>Operator</th><th>Result is True when...</th></tr>
+          <tr><td>And</td><td>Both conditions True</td></tr>
+          <tr><td>Or</td><td>At least one condition True</td></tr>
+          <tr><td>Not</td><td>Reverses (True→False, False→True)</td></tr>
+          <tr><td>AndAlso</td><td>Short-circuit And — stops if first is False</td></tr>
+          <tr><td>OrElse</td><td>Short-circuit Or — stops if first is True</td></tr>
+          <tr><td>Xor</td><td>Exactly one is True (rarely used)</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> AndAlso / OrElse — Why They Matter</h3>
+        <pre><code>' DANGEROUS — if the value isn't numeric, the second
+' comparison crashes.
+If IsNumeric(HoursTextBox.Text) And _
+   Decimal.Parse(HoursTextBox.Text) <= 60D Then
+
+' SAFE — if the first test fails, VB skips the second
+If IsNumeric(HoursTextBox.Text) AndAlso _
+   Decimal.Parse(HoursTextBox.Text) <= 60D Then</code></pre>
+        <div class="callout danger">
+          <strong>Critical exam trap</strong>
+          Always test for numeric BEFORE testing value ranges. Order matters.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Comparing Strings</h3>
+        <ul>
+          <li>Strings compare character-by-character using ASCII codes</li>
+          <li>Uppercase letters (A-Z, ASCII 65-90) come BEFORE lowercase (a-z, 97-122)</li>
+          <li>Numbers in strings come before letters</li>
+          <li>Space is less than everything</li>
+        </ul>
+        <pre><code>' "Donnie" vs "Doug": "Don" comes before "Dou", so "Donnie" is smaller
+' even though it has more characters
+
+' Use ToUpper to compare fairly
+If Name1String.ToUpper = "DOUG" Then
+    ' ...
+End If</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Select Case</h3>
+        <pre><code>Select Case GrossPayDecimal
+    Case Is <= TAX_LEVEL_08_DECIMAL
+        FederalTaxDecimal = Decimal.Round(TAX_RATE_08_DECIMAL * GrossPayDecimal, 2)
+    Case Is <= TAX_LEVEL_18_DECIMAL
+        FederalTaxDecimal = Decimal.Round(TAX_RATE_18_DECIMAL * GrossPayDecimal, 2)
+    Case Else
+        FederalTaxDecimal = Decimal.Round(TAX_RATE_28_DECIMAL * GrossPayDecimal, 2)
+End Select</code></pre>
+        <h4>Select Case rules</h4>
+        <ul>
+          <li>Use keyword <code>Is</code> before comparison operators: <code>Case Is &lt;= 985D</code></li>
+          <li>Use keyword <code>To</code> for ranges: <code>Case 25 To 72</code></li>
+          <li>Combine values with commas: <code>Case 15, 17, 25 To 72, 79, Is &gt; 150</code></li>
+          <li><code>Case Else</code> is optional</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> Data Validation — The 3 Tests</h3>
+        <table class="kv">
+          <tr><th>Test</th><th>What It Checks</th><th>Method</th></tr>
+          <tr><td>Missing Data</td><td>Value cannot be empty</td><td><code>TextBox.Text.Trim = String.Empty</code></td></tr>
+          <tr><td>Numeric Test</td><td>Value must be a number</td><td><code>IsNumeric(TextBox.Text)</code></td></tr>
+          <tr><td>Reasonableness</td><td>Value in range</td><td><code>value &gt; 0 AndAlso value &lt;= 60</code></td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> The Full Data Validation Block</h3>
+        <pre><code>Try
+    If NameTextBox.Text.Trim = String.Empty Then
+        ' Business rule #1: name required
+        MessageBox.Show("Name is required", "Name Missing Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        NameTextBox.Focus()
+        NameTextBox.SelectAll()
+
+    ElseIf EmployeeIDMaskedTextBox.Text.Trim.Length <> 11 OrElse _
+           EmployeeIDMaskedTextBox.Text.IndexOf(" ", 0, _
+               EmployeeIDMaskedTextBox.Text.Length) <> -1 Then
+        ' Business rule #2: employee ID incomplete
+        MessageBox.Show("Employee ID is not complete", "Employee ID Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        EmployeeIDMaskedTextBox.Focus()
+        EmployeeIDMaskedTextBox.SelectAll()
+
+    ElseIf DepartmentTextBox.Text.Trim = String.Empty Then
+        ' Business rule #3: department required
+        MessageBox.Show("Department is required", "Department Missing Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        DepartmentTextBox.Focus()
+        DepartmentTextBox.SelectAll()
+
+    ElseIf IsNumeric(HoursTextBox.Text) = False OrElse _
+           (Decimal.Parse(HoursTextBox.Text, Globalization.NumberStyles.Number) <= 0D Or _
+            Decimal.Parse(HoursTextBox.Text, Globalization.NumberStyles.Number) > 60D) Then
+        ' Business rule #4: hours numeric and 0-60
+        MessageBox.Show("Hours worked must be a number between 0 and 60", _
+                       "Hours Value Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        HoursTextBox.Focus()
+        HoursTextBox.SelectAll()
+
+    ElseIf IsNumeric(PayRateTextBox.Text) = False OrElse _
+           Decimal.Parse(PayRateTextBox.Text, _
+               Globalization.NumberStyles.Currency) <= 0D Then
+        ' Business rule #5: pay rate numeric and > 0
+        MessageBox.Show("Pay rate must be a number and greater than zero.", _
+                       "Pay Rate Value Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        PayRateTextBox.Focus()
+        PayRateTextBox.SelectAll()
+
+    Else
+        ' ALL valid — process the data (IPO model)
+        HoursDecimal = Decimal.Parse(HoursTextBox.Text, _
+                                     Globalization.NumberStyles.Number)
+        PayRateDecimal = Decimal.Parse(PayRateTextBox.Text, _
+                                       Globalization.NumberStyles.Currency)
+        ' ... rest of processing
+    End If
+
+Catch ex As Exception
+    MessageBox.Show("Unexpected error: " & ControlChars.NewLine & ex.Message, _
+                   "Compute Button Error", _
+                   MessageBoxButtons.OK, MessageBoxIcon.Error)
+End Try</code></pre>
+        <div class="callout success">
+          <strong>Rule of thumb</strong>
+          A correct data validation block has NO code between the last <code>End If</code> and the <code>Catch</code>.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> MessageBox.Show — All Parameters</h3>
+        <pre><code>MessageBox.Show("Message", "Title", MessageBoxButtons.OK, MessageBoxIcon.Error)</code></pre>
+        <table class="kv">
+          <tr><th>Parameter</th><th>Values</th></tr>
+          <tr><td>Message</td><td>String or string variable</td></tr>
+          <tr><td>Title</td><td>String — displays in title bar</td></tr>
+          <tr><td>Buttons</td><td>OK, OKCancel, YesNo, YesNoCancel</td></tr>
+          <tr><td>Icon</td><td>Error, Information, Question, Exclamation</td></tr>
+        </table>
+        <h4>Capture the user's response</h4>
+        <pre><code>Dim ResponseDialogResult As DialogResult = MessageBox.Show( _
+    "Do you want to close the form?", "Quit?", _
+    MessageBoxButtons.YesNo, MessageBoxIcon.Question, _
+    MessageBoxDefaultButton.Button2)
+
+If ResponseDialogResult = Windows.Forms.DialogResult.Yes Then
+    Me.Close()
+End If</code></pre>
+        <p><code>MessageBoxDefaultButton.Button2</code> makes the second button (No) the default — prevents accidental closure.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> The Full Payroll Compute Logic (Solution)</h3>
+        <pre><code>Public Class Payroll
+
+    ' Module-level constants
+    Const RETIREMENT_STANDARD_DECIMAL As Decimal = 0.05D
+    Const RETIREMENT_401A_DECIMAL As Decimal = 0.08D
+
+    Private RetirementRateDecimal As Decimal
+
+    Private Sub ComputeButton_Click(ByVal sender As System.Object, _
+                                   ByVal e As System.EventArgs) _
+                                   Handles ComputeButton.Click
+        Try
+            ' Declare variables
+            Dim HoursDecimal, PayRateDecimal As Decimal
+            Dim GrossPayDecimal, FederalTaxDecimal As Decimal
+            Dim BenefitsCostDecimal, NetPayDecimal As Decimal
+
+            ' Tax constants
+            Const TAX_RATE_08_DECIMAL As Decimal = 0.08D
+            Const TAX_RATE_18_DECIMAL As Decimal = 0.18D
+            Const TAX_RATE_28_DECIMAL As Decimal = 0.28D
+            Const TAX_LEVEL_08_DECIMAL As Decimal = 985D
+            Const TAX_LEVEL_18_DECIMAL As Decimal = 2450D
+
+            ' Benefit constants
+            Const MEDICAL_RATE_DECIMAL As Decimal = 35.75D
+            Const LIFE_RATE_DECIMAL As Decimal = 18.35D
+            Const DENTAL_RATE_DECIMAL As Decimal = 4D
+
+            ' --- Data Validation ---
+            If NameTextBox.Text.Trim = String.Empty Then
+                MessageBox.Show("Name is required", "Name Missing Error", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Error)
+                NameTextBox.Focus()
+            ElseIf IsNumeric(HoursTextBox.Text) = False OrElse _
+                   Decimal.Parse(HoursTextBox.Text) <= 0D OrElse _
+                   Decimal.Parse(HoursTextBox.Text) > 60D Then
+                MessageBox.Show("Hours must be between 0 and 60", _
+                                "Hours Value Error", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Error)
+                HoursTextBox.Focus()
+            ElseIf IsNumeric(PayRateTextBox.Text) = False OrElse _
+                   Decimal.Parse(PayRateTextBox.Text) <= 0D Then
+                MessageBox.Show("Pay rate must be > 0", _
+                                "Pay Rate Value Error", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Error)
+                PayRateTextBox.Focus()
+            Else
+                ' --- Process ---
+                HoursDecimal = Decimal.Parse(HoursTextBox.Text, _
+                                             Globalization.NumberStyles.Number)
+                PayRateDecimal = Decimal.Parse(PayRateTextBox.Text, _
+                                               Globalization.NumberStyles.Currency)
+
+                ' Gross Pay
+                If HoursDecimal <= 40D Then
+                    GrossPayDecimal = Decimal.Round(HoursDecimal * PayRateDecimal, 2)
+                Else
+                    GrossPayDecimal = Decimal.Round( _
+                        (40D * PayRateDecimal) + _
+                        ((HoursDecimal - 40D) * PayRateDecimal * 1.5D), 2)
+                End If
+
+                ' Federal Tax
+                Select Case GrossPayDecimal
+                    Case Is <= TAX_LEVEL_08_DECIMAL
+                        FederalTaxDecimal = Decimal.Round( _
+                            TAX_RATE_08_DECIMAL * GrossPayDecimal, 2)
+                    Case Is <= TAX_LEVEL_18_DECIMAL
+                        FederalTaxDecimal = Decimal.Round( _
+                            TAX_RATE_18_DECIMAL * GrossPayDecimal, 2)
+                    Case Else
+                        FederalTaxDecimal = Decimal.Round( _
+                            TAX_RATE_28_DECIMAL * GrossPayDecimal, 2)
+                End Select
+
+                ' Insurance Benefits
+                If MedicalCheckBox.Checked Then
+                    BenefitsCostDecimal += MEDICAL_RATE_DECIMAL
+                End If
+                If LifeCheckBox.Checked Then
+                    BenefitsCostDecimal += LIFE_RATE_DECIMAL
+                End If
+                If DentalCheckBox.Checked Then
+                    BenefitsCostDecimal += DENTAL_RATE_DECIMAL
+                End If
+
+                ' Retirement Benefits
+                BenefitsCostDecimal += Decimal.Round( _
+                    GrossPayDecimal * RetirementRateDecimal, 2)
+
+                ' Net Pay
+                NetPayDecimal = GrossPayDecimal - FederalTaxDecimal - BenefitsCostDecimal
+
+                ' --- Output ---
+                GrossPayTextBox.Text = GrossPayDecimal.ToString("C")
+                FederalTaxTextBox.Text = FederalTaxDecimal.ToString("N")
+                BenefitsTextBox.Text = BenefitsCostDecimal.ToString("N")
+                NetPayTextBox.Text = NetPayDecimal.ToString("C")
+
+                ' Enable/disable buttons
+                ComputeButton.Enabled = False
+                ResetButton.Enabled = True
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Unexpected error: " & ex.Message, _
+                            "Compute Button Error", _
+                            MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ResetButton_Click(ByVal sender As System.Object, _
+                                 ByVal e As System.EventArgs) _
+                                 Handles ResetButton.Click
+        NameTextBox.Clear()
+        EmployeeIDMaskedTextBox.Clear()
+        DepartmentTextBox.Clear()
+        HoursTextBox.Clear()
+        PayRateTextBox.Clear()
+        GrossPayTextBox.Clear()
+        FederalTaxTextBox.Clear()
+        BenefitsTextBox.Clear()
+        NetPayTextBox.Clear()
+
+        NoneRadioButton.Checked = True
+        MedicalCheckBox.Checked = False
+        LifeCheckBox.Checked = False
+        DentalCheckBox.Checked = False
+
+        ComputeButton.Enabled = True
+        ResetButton.Enabled = False
+
+        NameTextBox.Focus()
+    End Sub
+
+    Private Sub ExitButton_Click(ByVal sender As System.Object, _
+                                ByVal e As System.EventArgs) _
+                                Handles ExitButton.Click
+        Dim ResponseDialogResult As DialogResult = MessageBox.Show( _
+            "Do you want to close the form?", "Quit?", _
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question, _
+            MessageBoxDefaultButton.Button2)
+        If ResponseDialogResult = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
+End Class</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ MENUS ============ -->
+    <div class="section" id="menus">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-bars"></i> Chapter 5</div>
+        <h2>Menus, Dialogs, Sub Procedures &amp; Functions</h2>
+        <p>MenuStrip, Common Dialog controls, Context Menus, and dividing code into reusable procedures.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> MenuStrip Basics</h3>
+        <ul>
+          <li>Add from Toolbox — docked at the top of the form</li>
+          <li>Type menu text in the "Type Here" box</li>
+          <li><code>&amp;File</code> — the ampersand creates a hot key (Alt+F)</li>
+          <li>Top-level menu order convention: File, Edit, View, [specialty], Window, Help</li>
+          <li><strong>Separator bar</strong> — line between menu items (right-click drop-down → Separator)</li>
+          <li>Menu items with "..." (e.g. <code>Color...</code>) open a dialog box</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Menu Properties</h3>
+        <table class="kv">
+          <tr><th>Property</th><th>Purpose</th></tr>
+          <tr><td>Text</td><td>What appears on the menu</td></tr>
+          <tr><td>Name</td><td>What you reference in code (VB auto-names as <code>FileToolStripMenuItem</code>)</td></tr>
+          <tr><td>Enabled</td><td>True (default) or False (grayed out at runtime)</td></tr>
+          <tr><td>Checked</td><td>Adds a checkmark beside the item</td></tr>
+          <tr><td>ShortcutKeys</td><td>Ctrl+S, Ctrl+T etc. (must set ShowShortcutKeys = True)</td></tr>
+        </table>
+        <pre><code>' Disable a menu item in code
+TotalSalaryInformationToolStripMenuItem.Enabled = False
+
+' Check a menu item
+TotalSalaryInformationToolStripMenuItem.Checked = True</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Calling One Procedure From Multiple Controls</h3>
+        <p>Three approaches — in order of preference:</p>
+        <h4>1. Modify the Handles clause (BEST)</h4>
+        <pre><code>Private Sub ComputeButton_Click(ByVal sender As System.Object, _
+                                ByVal e As System.EventArgs) _
+                                Handles ComputeButton.Click, _
+                                        ComputeToolStripMenuItem.Click
+    ' This code runs when EITHER the button OR the menu is clicked
+End Sub</code></pre>
+
+        <h4>2. Use PerformClick</h4>
+        <pre><code>Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, _
+                                       ByVal e As System.EventArgs) _
+                                       Handles ExitToolStripMenuItem.Click
+    ExitButton.PerformClick()
+End Sub</code></pre>
+
+        <h4>3. Use a general procedure (see below)</h4>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> General Sub Procedures</h3>
+        <p>Standalone procedures not tied to a specific event. Used when multiple controls need to share logic.</p>
+        <pre><code>Private Sub ResetForm()
+    NameTextBox.Clear()
+    EmployeeIDMaskedTextBox.Clear()
+    DepartmentTextBox.Clear()
+    HoursTextBox.Clear()
+    PayRateTextBox.Clear()
+
+    NoneRadioButton.Checked = True
+    MedicalCheckBox.Checked = False
+    LifeCheckBox.Checked = False
+    DentalCheckBox.Checked = False
+
+    NameTextBox.Focus()
+End Sub
+
+' Call from ANY control:
+Private Sub ResetButton_Click(...) Handles ResetButton.Click
+    ResetForm()
+End Sub
+
+Private Sub ResetFormToolStripMenuItem_Click(...) Handles ...
+    ResetForm()
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> Function Procedures</h3>
+        <p>Functions return a value. They must be used either in an <code>If</code> statement or on the right side of an assignment.</p>
+        <h4>Two ways to return a value</h4>
+        <pre><code>' Method 1: Assign to the function name
+Private Function Commission(ByVal SalesAmountDecimal As Decimal) _
+                            As Decimal
+    If SalesAmountDecimal <= 1000D Then
+        Commission = 0.05D * SalesAmountDecimal
+    ElseIf SalesAmountDecimal <= 2500D Then
+        Commission = 0.1D * SalesAmountDecimal
+    Else
+        Commission = 0.2D * SalesAmountDecimal
+    End If
+End Function
+
+' Method 2: Use Return statement (modern, preferred)
+Private Function Commission(ByVal SalesAmountDecimal As Decimal) _
+                            As Decimal
+    Dim CommissionDecimal As Decimal
+    If SalesAmountDecimal <= 1000D Then
+        CommissionDecimal = 0.05D * SalesAmountDecimal
+    ElseIf SalesAmountDecimal <= 2500D Then
+        CommissionDecimal = 0.1D * SalesAmountDecimal
+    Else
+        CommissionDecimal = 0.2D * SalesAmountDecimal
+    End If
+    Return CommissionDecimal
+End Function</code></pre>
+
+        <h4>Calling the function</h4>
+        <pre><code>Dim CommissionAmountDecimal, SalesDecimal As Decimal
+If IsNumeric(SalesTextBox.Text) Then
+    SalesDecimal = Decimal.Parse(SalesTextBox.Text, _
+                                 Globalization.NumberStyles.Currency)
+    CommissionAmountDecimal = Commission(SalesDecimal)
+    CommissionTextBox.Text = CommissionAmountDecimal.ToString("C")
+End If</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> ByVal vs ByRef</h3>
+        <table class="kv">
+          <tr><th>Keyword</th><th>What's Sent</th><th>Original Changed?</th></tr>
+          <tr><td>ByVal (default)</td><td>Copy of the value</td><td>No</td></tr>
+          <tr><td>ByRef</td><td>Memory location</td><td>Yes</td></tr>
+        </table>
+        <pre><code>Private Function Commission(ByVal SalesAmountDecimal As Decimal) As Decimal
+' ByVal is the default — the caller's variable is NOT changed
+
+Private Function Commission(ByRef SalesAmountDecimal As Decimal) As Decimal
+' ByRef — modifications inside the function change the caller's variable</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Common Dialog Controls</h3>
+        <table class="kv">
+          <tr><th>Control</th><th>Purpose</th></tr>
+          <tr><td>ColorDialog</td><td>Pick a color</td></tr>
+          <tr><td>FontDialog</td><td>Pick a font</td></tr>
+          <tr><td>OpenFileDialog</td><td>Pick a file to open</td></tr>
+          <tr><td>SaveFileDialog</td><td>Pick a save location</td></tr>
+          <tr><td>FolderBrowserDialog</td><td>Pick a folder</td></tr>
+          <tr><td>PrintDialog</td><td>Printer settings</td></tr>
+          <tr><td>PageSetupDialog</td><td>Page margins, headers</td></tr>
+          <tr><td>PrintPreviewDialog</td><td>Preview before printing</td></tr>
+        </table>
+        <p>These are <strong>modal</strong> — user must respond before continuing. You only need one of each per form (they go in the component tray).</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> Color Dialog Example</h3>
+        <pre><code>Private Sub ColorToolStripMenuItem_Click(ByVal sender As System.Object, _
+                                       ByVal e As System.EventArgs) _
+                                       Handles ColorToolStripMenuItem.Click
+    ' Store the form's current color to the dialog
+    ColorDialog1.Color = Me.BackColor
+    ' Display the dialog
+    ColorDialog1.ShowDialog()
+    ' Apply the picked color
+    Me.BackColor = ColorDialog1.Color
+    MenuStrip1.BackColor = ColorDialog1.Color
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Font Dialog Example</h3>
+        <pre><code>Private Sub FontToolStripMenuItem_Click(ByVal sender As System.Object, _
+                                       ByVal e As System.EventArgs) _
+                                       Handles FontToolStripMenuItem.Click
+    FontDialog1.Font = Me.Font
+    FontDialog1.ShowDialog()
+    Me.Font = FontDialog1.Font
+    MenuStrip1.Font = FontDialog1.Font
+End Sub</code></pre>
+        <p>Setting Me.Font changes the default font for the form. Controls that inherit the font update automatically; controls with individually-set fonts need separate code.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> Context Menus</h3>
+        <p>Pop-up menus that appear on right-click.</p>
+        <ul>
+          <li>Add a <strong>ContextMenuStrip</strong> component</li>
+          <li>Set the form's <code>ContextMenuStrip</code> property to it</li>
+          <li>Or set the property on individual controls</li>
+          <li>Built-in context menus exist for TextBoxes (Cut, Copy, Paste)</li>
+          <li><code>ContextMenuStrip.SourceControl</code> tells you which control was right-clicked</li>
+        </ul>
+        <pre><code>Private Sub ColorToolStripMenuItem1_Click(ByVal sender As System.Object, _
+                                        ByVal e As System.EventArgs) _
+                                        Handles ColorToolStripMenuItem1.Click
+    ' SourceControl = the control that was right-clicked
+    ColorDialog1.Color = ContextMenuStrip1.SourceControl.ForeColor
+    ColorDialog1.ShowDialog()
+    ContextMenuStrip1.SourceControl.ForeColor = ColorDialog1.Color
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> Organizing Code with #Region</h3>
+        <pre><code>#Region " Function Procedures "
+
+    Private Function ComputeGrossPay() As Decimal
+        ' ...
+    End Function
+
+    Private Function ComputeFederalTax(ByVal GrossPayDecimal As Decimal) As Decimal
+        ' ...
+    End Function
+
+#End Region</code></pre>
+        <p>Regions collapse in the code editor. Organize by menu, by function, or by feature.</p>
+      </div>
+    </div>
+
+    <!-- ============ LOOPS ============ -->
+    <div class="section" id="loops">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-rotate"></i> Chapter 7</div>
+        <h2>Lists and Loops</h2>
+        <p>ListBox, ComboBox, and CheckedListBox controls, plus condition-controlled (Do) and count-controlled (For...Next) loops.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> Three List Controls</h3>
+        <table class="kv">
+          <tr><th>Control</th><th>Behavior</th></tr>
+          <tr><td>ListBox</td><td>List of items; user selects one; can't type new items</td></tr>
+          <tr><td>CheckedListBox</td><td>List of items each with a checkbox</td></tr>
+          <tr><td>ComboBox</td><td>Dropdown or list; behavior depends on DropDownStyle</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> ComboBox DropDownStyle</h3>
+        <table class="kv">
+          <tr><th>Style</th><th>Behavior</th></tr>
+          <tr><td>DropDown</td><td>Textbox + list; user CAN type new items</td></tr>
+          <tr><td>Simple</td><td>Textbox + list always visible; user can type</td></tr>
+          <tr><td>DropDownList</td><td>No textbox; user CANNOT type new items (gray background)</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> The Items Collection</h3>
+        <ul>
+          <li>Items are numbered from 0 (like arrays)</li>
+          <li>Access via <code>Control.Items</code></li>
+          <li>Add items at design time via the Items property in Properties window</li>
+          <li>Or in code with the methods below</li>
+        </ul>
+
+        <h4>Adding items</h4>
+        <pre><code>' Literal
+DepartmentComboBox.Items.Add("Chemistry")
+
+' From a TextBox
+EmployeeListBox.Items.Add(EmployeeNameTextBox.Text)
+
+' From a string variable
+Dim NewDepartmentString As String = "Chemistry"
+DepartmentComboBox.Items.Add(NewDepartmentString)</code></pre>
+
+        <h4>Inserting at a specific position</h4>
+        <pre><code>DepartmentComboBox.Items.Insert(0, "Chemistry")   ' Add as first item</code></pre>
+        <p>If <code>Sorted = True</code>, the list resorts immediately, so Insert behaves like Add.</p>
+
+        <h4>Removing items</h4>
+        <pre><code>DepartmentComboBox.Items.RemoveAt(0)                       ' by index
+DepartmentComboBox.Items.Remove(DepartmentComboBox.SelectedItem)  ' by name
+DepartmentComboBox.Items.Clear()                           ' remove all</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Key Properties</h3>
+        <table class="kv">
+          <tr><th>Property</th><th>Purpose</th></tr>
+          <tr><td>Items</td><td>Collection of all items</td></tr>
+          <tr><td>Items.Count</td><td>Number of items in the list</td></tr>
+          <tr><td>SelectedIndex</td><td>Index of the selected item (-1 = none selected)</td></tr>
+          <tr><td>SelectedItem</td><td>The actual selected item (object)</td></tr>
+          <tr><td>Sorted</td><td>True = auto-sort</td></tr>
+          <tr><td>Text</td><td>Text displayed (ComboBox only)</td></tr>
+        </table>
+
+        <pre><code>' Select an item
+DepartmentComboBox.SelectedIndex = 3     ' selects the 4th item
+
+' Unselect
+DepartmentComboBox.SelectedIndex = -1
+
+' Display selected item
+MessageBox.Show(EmployeeListBox.SelectedItem.ToString)
+
+' Display first item to a textbox
+EmployeeInformationTextBox.Text = EmployeeListBox.Items(0).ToString()
+
+' Count
+Dim MessageString As String = "Departments: " & _
+    DepartmentComboBox.Items.Count.ToString()</code></pre>
+        <div class="callout info">
+          <strong>Remember</strong>
+          <code>Items.Count</code> is always 1 more than the maximum <code>SelectedIndex</code>. If 5 items, SelectedIndex range is 0-4 but Count is 5.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> List Events</h3>
+        <table class="kv">
+          <tr><th>Event</th><th>When It Fires</th></tr>
+          <tr><td>SelectedIndexChanged</td><td>User selects a new item</td></tr>
+          <tr><td>TextChanged</td><td>Each character typed (ComboBox only)</td></tr>
+          <tr><td>Enter</td><td>Control receives focus</td></tr>
+          <tr><td>Leave</td><td>Control loses focus</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Boolean Variables</h3>
+        <pre><code>Dim FoundBoolean As Boolean = False   ' default is False</code></pre>
+        <p>Booleans are used to control loop termination (search flags).</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Do Loops — All 4 Forms</h3>
+
+        <h4>Test at top, While logic</h4>
+        <pre><code>Dim FoundBoolean As Boolean = False
+Do While FoundBoolean = False
+    ' ... code ...
+    If ValueIsFound = True Then
+        FoundBoolean = True
+    Else
+        IndexInteger += 1
+    End If
+Loop</code></pre>
+
+        <h4>Test at top, Until logic</h4>
+        <pre><code>Do Until FoundBoolean = True
+    ' ... code ...
+Loop</code></pre>
+
+        <h4>Test at bottom, While logic</h4>
+        <pre><code>Do
+    ' ... code ...
+Loop While FoundBoolean = False</code></pre>
+
+        <h4>Test at bottom, Until logic</h4>
+        <pre><code>Do
+    ' ... code ...
+Loop Until FoundBoolean = True</code></pre>
+
+        <p>Test at bottom always runs the body at least once.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> For...Next Loops</h3>
+        <pre><code>' Basic
+For IndexInteger = 1 To 5
+    CountListBox.Items.Add(IndexInteger.ToString)
+Next IndexInteger
+
+' With Step
+For IndexInteger = 1 To 5 Step 2      ' 1, 3, 5
+For IndexInteger = 10 To 1 Step -1    ' 10, 9, 8, ..., 1
+For IncrementDecimal = 0.05D To 0.25D Step 0.05D</code></pre>
+
+        <h4>Nested loops</h4>
+        <pre><code>Dim TotalLong As Long
+For OuterIndexInteger = 1 To 3
+    For InnerIndexInteger = 1 To 6
+        TotalLong += 1
+        CountListBox.Items.Add(TotalLong.ToString)
+    Next InnerIndexInteger
+Next OuterIndexInteger</code></pre>
+        <p>The inner loop runs completely for each iteration of the outer loop.</p>
+
+        <h4>Exit For</h4>
+        <pre><code>For IndexInteger = 1 To 10
+    If InputTextBox.Text = String.Empty Then
+        MessageBox.Show("Input is invalid")
+        Exit For
+    End If
+Next IndexInteger</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Compound Interest Example (Exam Favorite)</h3>
+        <pre><code>Dim InvestmentAmountDecimal As Decimal = 1000D   ' $1000
+Dim TermInteger As Integer = 5                   ' 5 years
+Dim InterestSingle As Single = 1.0F              ' beginning value
+Dim InterestRateSingle As Single = 0.06F         ' 6% rate
+
+For Index = 1 To TermInteger
+    InterestSingle = InterestSingle * (1.0F + InterestRateSingle)
+Next Index
+
+Dim EndingValueDecimal = InvestmentAmountDecimal * InterestSingle
+MessageBox.Show("Ending balance: " & EndingValueDecimal.ToString("C2"), _
+                "Your Balance", MessageBoxButtons.OK, MessageBoxIcon.Information)</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> Searching a List (Deduplication)</h3>
+        <pre><code>Dim FoundBoolean As Boolean = False
+Dim IndexInteger As Integer = 0
+
+Do Until FoundBoolean = True Or _
+    IndexInteger = DepartmentComboBox.Items.Count
+    If DepartmentComboBox.Text.Trim.ToUpper = _
+       DepartmentComboBox.Items(IndexInteger).ToString.Trim.ToUpper Then
+        FoundBoolean = True
+    Else
+        IndexInteger += 1
+    End If
+Loop
+
+If FoundBoolean = False And DepartmentComboBox.Text.Trim <> String.Empty Then
+    DepartmentComboBox.Items.Add(DepartmentComboBox.Text.Trim)
+Else
+    MessageBox.Show("Duplicate or Invalid Department Name", _
+                    "Duplicate Data Error", _
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    DepartmentComboBox.Focus()
+    DepartmentComboBox.SelectAll()
+End If</code></pre>
+        <p>This pattern prevents duplicate entries when the ComboBox has DropDownStyle = DropDown (user can type).</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> TextChanged Event (Search-as-you-type)</h3>
+        <pre><code>Private Sub FruitTextBox_TextChanged(ByVal sender As System.Object, _
+                                     ByVal e As System.EventArgs) _
+                                     Handles FruitTextBox.TextChanged
+    Dim IndexInteger As Integer = 0
+    Dim FoundBoolean As Boolean = False
+    Dim ListItemString As String
+
+    Do While Not FoundBoolean And IndexInteger < FruitListBox.Items.Count
+        ListItemString = FruitListBox.Items(IndexInteger).ToString.ToUpper
+        If ListItemString.StartsWith(FruitTextBox.Text.ToUpper) Then
+            FruitListBox.SelectedIndex = IndexInteger
+            FoundBoolean = True
+        Else
+            IndexInteger += 1
+        End If
+    Loop
+
+    If FoundBoolean = False Then
+        MessageBox.Show("That fruit is not in the list.", "Not Found", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End If
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">12</span> ValidData Function (Chapter 7 pattern)</h3>
+        <pre><code>Private Function ValidData() As Boolean
+    ValidData = False
+    Dim MessageString, TitleString As String
+
+    If EmployeeNameTextBox.Text.Trim = String.Empty Then
+        MessageBox.Show("Employee name is missing.", "Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        EmployeeNameTextBox.Focus()
+        EmployeeNameTextBox.SelectAll()
+    ElseIf TitleComboBox.SelectedIndex = -1 Then
+        MessageBox.Show("Title was not selected.", "Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        TitleComboBox.Focus()
+    ElseIf DepartmentComboBox.Text.Trim = String.Empty Then
+        MessageBox.Show("Department is missing.", "Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        DepartmentComboBox.Focus()
+    ElseIf IsNumeric(SalaryTextBox.Text) = False OrElse _
+           Decimal.Parse(SalaryTextBox.Text, _
+               Globalization.NumberStyles.Currency) <= 0D Then
+        MessageBox.Show("Salary must be greater than zero.", "Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        SalaryTextBox.Focus()
+        SalaryTextBox.SelectAll()
+    Else
+        ValidData = True
+    End If
+End Function
+
+' Call it inside the Compute/Add event:
+If ValidData Then
+    ' ... process
+End If</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ ARRAYS ============ -->
+    <div class="section" id="arrays">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-layer-group"></i> Chapter 8</div>
+        <h2>Arrays and Collections</h2>
+        <p>Store many values under one name, process them with loops, and look up values with table lookup. Also covers Structures and multidimensional arrays.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> What Is an Array</h3>
+        <ul>
+          <li>A list of values referenced by the same name</li>
+          <li>Like a ListBox without the box</li>
+          <li>Each item is an <strong>element</strong></li>
+          <li>Elements numbered starting at 0</li>
+          <li>The number inside parentheses is the <strong>subscript</strong> or <strong>index</strong></li>
+          <li>Based on the System.Array object</li>
+        </ul>
+        <pre><code>' Syntax
+ArrayName(ElementNumber)
+
+' Examples
+AmountDecimal(3)      ' 4th element of AmountDecimal
+StatesString(6)       ' 7th element of StatesString
+StatesString(RowInteger)  ' element at index RowInteger</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Declaring Arrays</h3>
+        <pre><code>' General formats
+Dim ArrayName(UpperSubscript) As DataType
+Dim ArrayName() As DataType = {ListOfValues}
+Dim ArrayName As DataType = {ListOfValues}
+
+' Examples
+Dim NameString(25) As String                 ' 26 elements (0-25)
+Private BalanceDecimal(10) As Decimal        ' module-level; 11 elements
+
+' With immediate values (do NOT specify size)
+Private SchoolString() As String = {"Arts and Sciences", _
+                                    "Business", "Nursing", _
+                                    "Engineering", "Education", "Pharmacy"}</code></pre>
+        <p>Numeric arrays default to 0; string arrays default to empty string.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Subscript Errors</h3>
+        <pre><code>' If array has 10 elements (0-9) and you access index 10 or -1:
+' Runtime exception: System.IndexOutOfRangeException</code></pre>
+        <p>Always keep subscripts between 0 and UpperSubscript.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Processing Arrays with Loops</h3>
+        <h4>For...Next</h4>
+        <pre><code>For RowInteger = 0 To NumberOfSchoolsInteger
+    Debug.WriteLine(SchoolString(RowInteger))
+Next RowInteger</code></pre>
+
+        <h4>For Each...Next (no index counter needed)</h4>
+        <pre><code>For Each SchoolNameString As String In SchoolString
+    Debug.WriteLine(SchoolNameString)
+Next SchoolNameString</code></pre>
+
+        <h4>Rules for For Each...Next</h4>
+        <ul>
+          <li>Index variable's data type must match the array's data type</li>
+          <li>Cannot modify array values (read-only iteration)</li>
+          <li>Cannot iterate backwards or use Step</li>
+        </ul>
+
+        <h4>Reinitialize numeric arrays</h4>
+        <pre><code>For Each IndividualElementInteger As Integer In TotalInteger
+    IndividualElementInteger = 0
+Next IndividualElementInteger</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> Structures</h3>
+        <p>A structure combines multiple fields into a single custom data type.</p>
+        <pre><code>Structure Product
+    Dim ProductIDString As String
+    Dim DescriptionString As String
+    Dim QuantityInteger As Integer
+    Dim PriceDecimal As Decimal
+End Structure
+
+' Declare a single structure variable
+Dim TextBookProduct As Product
+
+' Or declare an array of structures
+Dim InventoryProduct(450000) As Product
+
+' Assign values to structure fields
+TextBookProduct.ProductIDString = "x599"
+TextBookProduct.DescriptionString = "Intro to CMIS Textbook"
+TextBookProduct.QuantityInteger = 75
+TextBookProduct.PriceDecimal = 79.4D
+
+InventoryProduct(0).ProductIDString = "A402"
+InventoryProduct(0).DescriptionString = "History of America Textbook"
+InventoryProduct(0).QuantityInteger = 10
+InventoryProduct(0).PriceDecimal = 65.55D</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Structure with Array Inside</h3>
+        <pre><code>Structure Sale
+    Dim SaleIDString As String
+    Dim SaleDate As Date
+    Dim SaleDecimal() As Decimal   ' array inside structure — no size here
+End Structure
+
+Dim SalesInfoSale As Sale
+
+' Later — ReDim the array inside the structure
+ReDim SalesInfoSale.SaleDecimal(6)
+
+' Then assign
+SalesInfoSale.SaleIDString = 4
+SalesInfoSale.SaleDecimal(RowInteger) = TodaysSalesAmountDecimal</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> Table Lookup</h3>
+        <p>A technique to search an array for a <strong>key value</strong> and use the other fields of the matching element.</p>
+
+        <h4>The Bookstore Product structure array example</h4>
+        <table class="kv">
+          <tr><th>ProductID (key)</th><th>Description</th><th>Qty</th><th>Price</th></tr>
+          <tr><td>A402</td><td>History Textbook</td><td>10</td><td>$65.55</td></tr>
+          <tr><td>A804</td><td>College T-shirt</td><td>15</td><td>$18.99</td></tr>
+          <tr><td>C344</td><td>Sweat Pants</td><td>25</td><td>$25.99</td></tr>
+          <tr><td>F554</td><td>Drinking Mug</td><td>8</td><td>$5.49</td></tr>
+          <tr><td>G302</td><td>Pen Set</td><td>15</td><td>$35.50</td></tr>
+          <tr><td>M302</td><td>Sweat Shirt</td><td>25</td><td>$22.99</td></tr>
+          <tr><td>S499</td><td>Philosophy Textbook</td><td>50</td><td>$85.00</td></tr>
+          <tr><td>X599</td><td>CMIS Textbook</td><td>75</td><td>$79.40</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> Search Procedure (Core Pattern)</h3>
+        <pre><code>Private Sub SearchButton_Click(ByVal sender As System.Object, _
+                              ByVal e As System.EventArgs) _
+                              Handles SearchButton.Click
+    Dim FoundBoolean As Boolean = False
+    Dim RowInteger As Integer = 0
+
+    Do Until FoundBoolean = True Or RowInteger > NumberProductsInteger
+        If ProductIDTextBox.Text = InventoryProduct(RowInteger).ProductIDString Then
+            DescriptionTextBox.Text = InventoryProduct(RowInteger).DescriptionString
+            QuantityTextBox.Text = InventoryProduct(RowInteger).QuantityInteger.ToString
+            PriceTextBox.Text = InventoryProduct(RowInteger).PriceDecimal.ToString("C2")
+            FoundBoolean = True
+        Else
+            RowInteger += 1
+        End If
+    Loop
+
+    If FoundBoolean = False Then
+        DescriptionTextBox.Clear()
+        QuantityTextBox.Clear()
+        PriceTextBox.Clear()
+        MessageBox.Show("Reenter a valid product ID.", "Invalid Identifier", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        ProductIDTextBox.Focus()
+        ProductIDTextBox.SelectAll()
+    End If
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Multidimensional Arrays</h3>
+        <p>More than one dimension — rows AND columns.</p>
+        <pre><code>' Declaration
+Private TaxTableDecimal(150, 3) As Decimal
+' 151 rows × 4 columns (0-150, 0-3)
+
+' Reference — [row, column]
+TaxAmountTextBox.Text = TaxTableDecimal(19, 1).ToString("C")</code></pre>
+
+        <h4>Two-dimensional string table</h4>
+        <pre><code>Dim StatesString(,) As String = { _
+    {"Alaska", "Indiana", "R. Island"}, _
+    {"Texas", "Maryland", "Delaware"}, _
+    {"California", "Idaho", "Vermont"}, _
+    {"Florida", "Iowa", "Hawaii"}}
+
+' Reference
+StateTextBox.Text = StatesString(RowInteger, ColumnInteger)</code></pre>
+        <div class="callout danger">
+          <strong>Critical</strong>
+          First subscript = row. Second subscript = column. Always.
+        </div>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> Processing a 2D Array with Nested For</h3>
+        <pre><code>For RowInteger = 0 To 3
+    For ColumnInteger = 0 To 2
+        Debug.WriteLine(StatesString(RowInteger, ColumnInteger))
+    Next
+Next</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> Version 3 — Two-Dimensional Inventory</h3>
+        <pre><code>Private InventoryString(,) As String = { _
+    {"A402", "History of America Textbook", "10", "$65.55"}, _
+    {"A804", "College Logo Tshirt", "15", "$18.99"}, _
+    {"C344", "College Logo Sweat Pants", "25", "$25.99"}, _
+    {"F554", "Drinking Mug", "8", "$5.49"}, _
+    {"G302", "Pencil and Pen Set", "15", "$35.50"}, _
+    {"M302", "College Logo Sweat Shirt", "25", "$22.99"}, _
+    {"S499", "Intro to Philosophy Textbook", "50", "$85.00"}, _
+    {"X599", "Intro to CMIS Textbook", "75", "$79.40"}}
+
+' Search: column 0 holds the ProductID
+Do Until FoundBoolean = True Or RowInteger > NumberProductsInteger
+    If ProductIDTextBox.Text = InventoryString(RowInteger, 0) Then
+        DescriptionTextBox.Text = InventoryString(RowInteger, 1)
+        QuantityTextBox.Text = InventoryString(RowInteger, 2)
+        PriceTextBox.Text = InventoryString(RowInteger, 3)
+        FoundBoolean = True
+    Else
+        RowInteger += 1
+    End If
+Loop</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">12</span> Accumulator Arrays</h3>
+        <p>Track running totals per product using a parallel array.</p>
+        <pre><code>' Module-level
+Private ProductSalesTotalDecimal(NumberProductsInteger) As Decimal
+
+' When a purchase is made:
+Dim IndexInteger As Integer = ProductIDComboBox.SelectedIndex
+ProductSalesTotalDecimal(IndexInteger) += _
+    Decimal.Parse(PriceTextBox.Text, Globalization.NumberStyles.Currency)
+
+' Produce a report
+Dim SalesString As String = "ProductID" & vbTab & "Dollar Sales" & vbCrLf
+Dim RowInteger As Integer
+For RowInteger = 0 To NumberProductsInteger
+    SalesString &= InventoryString(RowInteger, 0) & vbTab & vbTab & _
+                   ProductSalesTotalDecimal(RowInteger).ToString("C") & vbCrLf
+Next
+MessageBox.Show(SalesString, "Sales for all Products", _
+               MessageBoxButtons.OK, MessageBoxIcon.Information)</code></pre>
+        <p><code>vbTab</code> = tab character. <code>vbCrLf</code> = carriage return + line feed.</p>
+      </div>
+    </div>
+
+    <!-- ============ DATABASE ============ -->
+    <div class="section" id="db">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-database"></i> Chapter 10</div>
+        <h2>Windows Database Programming</h2>
+        <p>Connect to Access or SQL Server. Display data in DataGridViews and bound controls. Insert, update, and delete rows.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> Database Terminology</h3>
+        <table class="kv">
+          <tr><th>Term</th><th>Meaning</th></tr>
+          <tr><td>Database</td><td>Repository of physical files</td></tr>
+          <tr><td>Relational Database</td><td>Tables related by key values</td></tr>
+          <tr><td>Table</td><td>Rows and columns</td></tr>
+          <tr><td>Row / Record</td><td>One record (e.g. one student)</td></tr>
+          <tr><td>Column / Field</td><td>One attribute (e.g. LastName)</td></tr>
+          <tr><td>Primary Key</td><td>Uniquely identifies each row</td></tr>
+          <tr><td>Relationship</td><td>Links between tables (via keys)</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Table Types</h3>
+        <table class="kv">
+          <tr><th>Type</th><th>Purpose</th><th>Example</th></tr>
+          <tr><td>Base table</td><td>Stores entity data</td><td>Student, Course</td></tr>
+          <tr><td>Association table</td><td>Links two entities</td><td>Enrollment (Student + Course)</td></tr>
+          <tr><td>Validation table</td><td>Validates another table</td><td>States</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Relationships</h3>
+        <ul>
+          <li><strong>One-to-many</strong> — one row relates to many rows in another table</li>
+          <li>Key symbol = one side. Infinity symbol = many side</li>
+          <li>Example: one Student can have many Enrollments</li>
+          <li>Also: one Course can have many Enrollments</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> ADO.NET — The VB Database Technology</h3>
+        <ul>
+          <li>API between your VB app and the DBMS</li>
+          <li>Transfers data using XML</li>
+          <li>Four connection types:
+            <ul>
+              <li><strong>SQLClient</strong> — Microsoft SQL Server</li>
+              <li><strong>OracleClient</strong> — Oracle DBMS</li>
+              <li><strong>OLEDB</strong> — Microsoft Access and others</li>
+              <li><strong>ODBC</strong> — miscellaneous data sources</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> The Connection Chain (MEMORIZE)</h3>
+        <pre><code>Data Source → BindingSource → TableAdapter → DataSet → Form controls</code></pre>
+        <table class="kv">
+          <tr><th>Component</th><th>Role</th></tr>
+          <tr><td>Data Source</td><td>The actual database file (Access .mdb or SQL .mdf)</td></tr>
+          <tr><td>BindingSource</td><td>Links to a data source; manages position, sorting, edit state</td></tr>
+          <tr><td>TableAdapter</td><td>Stores the SQL query; handles retrieval and updates</td></tr>
+          <tr><td>DataSet</td><td>In-memory copy of retrieved data rows</td></tr>
+          <tr><td>Bound controls</td><td>TextBoxes, DataGridViews connected to specific columns</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> DataGridView Setup</h3>
+        <ul>
+          <li>Add DataGridView from Toolbox → Data section</li>
+          <li>Smart Tag → Choose Data Source → Add Project Data Source</li>
+          <li>Data Source Configuration Wizard opens:
+            <ul>
+              <li>Choose Database</li>
+              <li>Choose Dataset</li>
+              <li>New Connection → point to the .mdb or .mdf file</li>
+              <li>Select the table(s)</li>
+              <li>Name the dataset</li>
+            </ul>
+          </li>
+          <li>Set <strong>Enable Adding/Editing/Deleting = False</strong> for read-only</li>
+          <li>Dock in parent container to fill the form</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">7</span> DataGridView Column Formatting</h3>
+        <ul>
+          <li>Smart Tag → Edit Columns</li>
+          <li>Change <strong>HeaderText</strong> (e.g. "StudentSSN" → "SSN")</li>
+          <li>Change <strong>AutoSizeMode</strong> from "Not Set" to "None" and set Width in pixels</li>
+          <li>Set <strong>DefaultCellStyle → Format</strong> to Currency with 2 decimals for money</li>
+          <li>Set <strong>Alignment</strong> to MiddleRight for numeric columns</li>
+        </ul>
+        <p>Alternative: set the whole grid's <code>AutoSizeColumnsMode = AllCells</code>.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">8</span> The Auto-Generated Load Event</h3>
+        <p>VB writes this code automatically when you bind the grid:</p>
+        <pre><code>Private Sub CourseGrid_Load(ByVal sender As System.Object, _
+                           ByVal e As System.EventArgs) _
+                           Handles MyBase.Load
+    ' TODO: This line of code loads data into the 'CourseGridDataSet.Course' table.
+    Me.CourseTableAdapter.Fill(Me.CourseGridDataSet.Course)
+End Sub</code></pre>
+        <p>Wrap in Try-Catch for robustness:</p>
+        <pre><code>Try
+    Me.CourseTableAdapter.Fill(Me.CourseGridDataSet.Course)
+Catch ex As Exception
+    Dim MessageString As String = "Report this error: " & _
+                                  ControlChars.NewLine & ex.Message
+    MessageBox.Show(MessageString, "Course Data Load Failed", _
+                   MessageBoxButtons.OK, MessageBoxIcon.Error)
+End Try</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">9</span> Bound Controls (Individual Fields)</h3>
+        <p>Open <strong>Data Sources window</strong> (Data menu → Show Data Sources).</p>
+        <ul>
+          <li>Select the table and set view to <strong>Details</strong></li>
+          <li>Drag the table onto the form</li>
+          <li>VB auto-generates Labels + TextBoxes + BindingNavigator</li>
+          <li>Auto-adds to component tray: DataSet, BindingSource, TableAdapter, TableAdapterManager, BindingNavigator</li>
+        </ul>
+
+        <h4>Manual binding</h4>
+        <pre><code>' Bind a MaskedTextBox's Text property to a column
+MaskedTextBox.DataBindings.Add("Text", StudentBindingSource, "PhoneNumber")
+
+' Or via the Properties window:
+'   DataBindings → Text → dropdown → StudentBindingSource → PhoneNumber</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">10</span> Formatting Bound Numeric Data</h3>
+        <ol style="padding-left:20px; color:var(--text-muted); line-height:1.7;">
+          <li>Select the numeric TextBox</li>
+          <li>Expand <strong>DataBindings → (Advanced)</strong></li>
+          <li>In the Formatting and Advanced Binding dialog:
+            <ul>
+              <li>Property: Text</li>
+              <li>Binding: correct column (e.g. AccountBalance)</li>
+              <li>Format type: Currency / Numeric / Custom</li>
+              <li>Decimal places: 2</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11</span> Key Database Methods</h3>
+        <table class="kv">
+          <tr><th>Method</th><th>Purpose</th></tr>
+          <tr><td><code>TableAdapter.Fill(DataSet.Table)</code></td><td>Load rows into dataset</td></tr>
+          <tr><td><code>BindingSource.EndEdit()</code></td><td>End any edit operations</td></tr>
+          <tr><td><code>TableAdapterManager.UpdateAll(DataSet)</code></td><td>Save all changes to database</td></tr>
+          <tr><td><code>BindingSource.RemoveCurrent()</code></td><td>Delete the current row</td></tr>
+          <tr><td><code>BindingSource.CancelEdit()</code></td><td>Throw away changes</td></tr>
+          <tr><td><code>DataSet.RejectChanges()</code></td><td>Undo all changes since last AcceptChanges</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">12</span> The Save Procedure</h3>
+        <pre><code>Private Sub StudentBindingNavigatorSaveItem_Click(ByVal sender As System.Object, _
+                                               ByVal e As System.EventArgs) _
+                                               Handles StudentBindingNavigatorSaveItem.Click
+    Try
+        Me.StudentBindingSource.EndEdit()
+        Me.TableAdapterManager.UpdateAll(Me.StudentDetailsDataSet)
+        Me.SetControls(True)   ' Re-lock the form
+    Catch ex As Exception
+        Dim MessageString As String = "Report this error: " & _
+                                      ControlChars.NewLine & ex.Message
+        MessageBox.Show(MessageString, "Error During Save Operation", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+    End Try
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">13</span> The Delete Procedure</h3>
+        <pre><code>Private Sub BindingNavigatorDeleteItem_Click(ByVal sender As System.Object, _
+                                        ByVal e As System.EventArgs) _
+                                        Handles BindingNavigatorDeleteItem.Click
+    Dim RowNumberInteger As Integer = StudentBindingSource.Position
+    Try
+        Dim ResponseDialogResult As DialogResult = MessageBox.Show( _
+            "Confirm to delete the student record.", "Delete Y/N?", _
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question, _
+            MessageBoxDefaultButton.Button2)
+        If ResponseDialogResult = Windows.Forms.DialogResult.Yes Then
+            StudentBindingSource.RemoveCurrent()
+            StudentBindingSource.EndEdit()
+            TableAdapterManager.UpdateAll(StudentDetailsDataSet)
+        End If
+    Catch exOleDb As OleDb.OleDbException
+        ' Foreign key violation — student is enrolled in courses
+        StudentDetailsDataSet.RejectChanges()
+        StudentBindingSource.Position = RowNumberInteger
+        MessageBox.Show("This student cannot be deleted - the student is " & _
+                        "enrolled in courses." & ControlChars.NewLine & _
+                        exOleDb.Message, "Delete Operation Error", _
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
+    Catch ex As Exception
+        MessageBox.Show("Unexpected error: " & ex.Message, _
+                       "Delete Operation Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+    End Try
+End Sub</code></pre>
+        <p>Important: the student's DataSet column is restored via RejectChanges if the delete fails.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">14</span> RowState Concept (Critical)</h3>
+        <p>Each DataRow tracks its state:</p>
+        <table class="kv">
+          <tr><th>RowState</th><th>Meaning</th></tr>
+          <tr><td>Added</td><td>New row not yet saved to database</td></tr>
+          <tr><td>Modified</td><td>Existing row whose columns changed</td></tr>
+          <tr><td>Deleted</td><td>Row marked for deletion</td></tr>
+          <tr><td>Unchanged</td><td>Row matches database</td></tr>
+        </table>
+        <p><code>UpdateAll</code> reads RowState for each row and decides INSERT, UPDATE, or DELETE.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">15</span> Sorting with BindingSource</h3>
+        <pre><code>' In Properties window:
+'   StudentBindingSource → Sort property = "LastName, FirstName"</code></pre>
+        <p>Column names must match the DataSet exactly. Comma-separated for multi-column sort.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">16</span> Access Database Fix for 64-bit Windows</h3>
+        <p>The Microsoft.Jet.OLEDB.4.0 provider is only available in 32-bit. On 64-bit Windows, you get:</p>
+        <pre><code>The 'Microsoft.Jet.OLEDB.4.0' provider is not registered on the local machine.</code></pre>
+        <p><strong>Fix (full Visual Studio):</strong></p>
+        <ol style="padding-left:20px; color:var(--text-muted); line-height:1.7;">
+          <li>Solution Explorer → double-click <strong>My Project</strong></li>
+          <li>Click the <strong>Compile</strong> tab</li>
+          <li>Click <strong>Advanced Compile Options...</strong></li>
+          <li>Set <strong>Target CPU</strong> to <strong>x86</strong></li>
+        </ol>
+        <p><strong>Fix (VB Express Edition):</strong> edit the .vbproj file manually — add <code>&lt;PlatformTarget&gt;x86&lt;/PlatformTarget&gt;</code> inside the first <code>&lt;PropertyGroup&gt;</code> section.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">17</span> Copy to Output Directory</h3>
+        <p>By default, the database file is copied to <code>\bin\Debug</code> on every run, so saves are lost. Fix:</p>
+        <ul>
+          <li>Select the .mdb/.mdf file in Solution Explorer</li>
+          <li>Properties → <strong>Copy to Output Directory</strong> = <strong>Copy if newer</strong></li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">18</span> ValidData for Database Form</h3>
+        <pre><code>Private Function ValidData() As Boolean
+    ValidData = False
+    Dim MessageString As String
+
+    If SSNMaskedTextBox.Text.Trim.Length <> 11 Then
+        MessageBox.Show("SSN value is not complete.", "Data Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        SSNMaskedTextBox.Focus()
+    ElseIf SSNMaskedTextBox.Text.IndexOf(" ", 0, 11) <> -1 Then
+        MessageBox.Show("SSN contains blank characters.", "Data Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        SSNMaskedTextBox.Focus()
+    ElseIf LastNameTextBox.Text.Trim = String.Empty Then
+        MessageBox.Show("Last name is required.", "Data Error", _
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        LastNameTextBox.Focus()
+    ' ... more rules ...
+    Else
+        ValidData = True
+    End If
+End Function</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ SMART DEVICES ============ -->
+    <div class="section" id="smart">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-mobile-alt"></i> Extra</div>
+        <h2>Smart Devices Programming</h2>
+        <p>Program hand-held Pocket PCs and smartphones using the same VB.Net techniques.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1</span> Smart Device Basics</h3>
+        <ul>
+          <li>Programming target: Windows CE–based devices</li>
+          <li>Visual Studio supports 200+ devices</li>
+          <li>You can use most Windows Forms controls</li>
+          <li>Design surface is <strong>fixed size</strong> — must fit exact Pocket PC screen</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">2</span> Key Differences from Windows Forms</h3>
+        <table class="kv">
+          <tr><th>Windows Forms</th><th>Smart Device</th></tr>
+          <tr><td>GroupBox available</td><td>Use <strong>Panel</strong> instead (GroupBox not available)</td></tr>
+          <tr><td><code>TextBox.Clear()</code></td><td>No Clear method — use <code>TextBox.Text = String.Empty</code></td></tr>
+          <tr><td>Form resizable</td><td>Fixed design size</td></tr>
+          <tr><td>Large title bars</td><td>Limit the Title Bar entry length</td></tr>
+        </table>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">3</span> Panel Control</h3>
+        <ul>
+          <li>Container for grouping RadioButtons (like GroupBox)</li>
+          <li>Can have scroll bars if needed</li>
+          <li>Resize by dragging sizing handles</li>
+          <li>Found in Toolbox → Device Containers tab</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">4</span> Testing with the Emulator</h3>
+        <ul>
+          <li>Press F5 to deploy</li>
+          <li>When Deploy dialog appears, choose <strong>PocketPC 2003 SE Emulator</strong></li>
+          <li>Emulator is slow — wait for it</li>
+          <li>Displays a Pocket PC "skin"</li>
+          <li>Input via keyboard (or emulated stylus)</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">5</span> Smart Device Clear Button Pattern</h3>
+        <pre><code>Private Sub clearButton_Click(ByVal sender As System.Object, _
+                            ByVal e As System.EventArgs) _
+                            Handles clearButton.Click
+    With Me
+        .beefRadioButton.Checked = False
+        .porkRadioButton.Checked = False
+        .fowlRadioButton.Checked = False
+        .seafoodRadioButton.Checked = False
+
+        ' No Clear method on Smart Devices
+        .numberTextBox.Text = String.Empty
+        .costTextBox.Text = String.Empty
+    End With
+End Sub</code></pre>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6</span> Business Rules Validation (Smart Device)</h3>
+        <pre><code>Try
+    If Me.beefRadioButton.Checked = False And _
+       Me.porkRadioButton.Checked = False And _
+       Me.fowlRadioButton.Checked = False And _
+       Me.seafoodRadioButton.Checked = False Then
+        MessageBox.Show("You must select an entree.", "Error")
+    ElseIf Not IsNumeric(Me.numberTextBox.Text) Then
+        MessageBox.Show("Number must be numeric.", "Error")
+    ElseIf Integer.Parse(Me.numberTextBox.Text, _
+             Globalization.NumberStyles.Integer) <= 0 Then
+        MessageBox.Show("Number must be > 0.", "Error")
+    Else
+        ' Process
+        numberInteger = Integer.Parse(Me.numberTextBox.Text, _
+                                      Globalization.NumberStyles.Integer)
+        If Me.beefRadioButton.Checked Then
+            costDecimal = numberInteger * beefDecimal
+        ElseIf Me.porkRadioButton.Checked Then
+            costDecimal = numberInteger * porkDecimal
+        ' ... etc
+        End If
+        Me.costTextBox.Text = costDecimal.ToString("C")
+    End If
+Catch ex As FormatException
+    MessageBox.Show("Number must be a whole number.", "Error")
+Catch ex As Exception
+    MessageBox.Show("Unexpected error: " & ex.Message)
+End Try</code></pre>
+      </div>
+    </div>
+
+    <!-- ============ EXAM TIPS ============ -->
+    <div class="section" id="exam">
+      <div class="chapter-header">
+        <div class="chapter-num"><i class="fas fa-graduation-cap"></i> Exam Prep</div>
+        <h2>Top 20 Things You Must Remember</h2>
+        <p>Your highest-probability exam traps, in one place. Read this the night before.</p>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">1-5</span> Foundations</h3>
+        <ul>
+          <li><strong>RadioButtons use CheckedChanged, not Click.</strong> Same for CheckBoxes.</li>
+          <li><strong>AndAlso / OrElse prevent crashes</strong> — always test IsNumeric before Decimal.Parse.</li>
+          <li><strong>Input-Process-Output</strong> — every computing program follows this three-step pattern.</li>
+          <li><strong>Option Strict On</strong> — placed after comments, before <code>Public Class</code>. Forces explicit conversion.</li>
+          <li><strong>Data type suffixes</strong>: D = Decimal, F = Single, I = Integer, L = Long, S = Short, R = Double.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">6-10</span> Calculations &amp; Validation</h3>
+        <ul>
+          <li><strong>Globalization.NumberStyles.Currency</strong> — needed to parse "$1,234.56".</li>
+          <li><strong>Decimal.Round(expression, 2)</strong> — always round money calculations.</li>
+          <li><strong>Format codes</strong>: "C" = currency, "N" = number, "N0" = no decimals.</li>
+          <li><strong>Order of precedence</strong>: () → ^ → * / → \ → Mod → + -.</li>
+          <li><strong>Validation order matters</strong>: test missing data, then numeric, then range.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">11-15</span> Logic &amp; Loops</h3>
+        <ul>
+          <li><strong>Handles clause</strong> — one procedure can handle multiple controls' events.</li>
+          <li><strong>ByVal vs ByRef</strong> — ByVal sends a copy (safe), ByRef sends memory (can change original).</li>
+          <li><strong>For Each...Next</strong> — processes entire array without counter.</li>
+          <li><strong>Do...Loop While (test at bottom)</strong> — always runs at least once.</li>
+          <li><strong>Exit For / Exit Do</strong> — leave a loop early.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">16-20</span> Arrays &amp; Database</h3>
+        <ul>
+          <li><strong>Arrays start at index 0.</strong> Invalid index throws IndexOutOfRangeException.</li>
+          <li><strong>2D array</strong>: <code>Array(row, column)</code> — row FIRST.</li>
+          <li><strong>Structure</strong> = custom data type with multiple fields.</li>
+          <li><strong>Connection chain</strong>: Data Source → BindingSource → TableAdapter → DataSet → Controls.</li>
+          <li><strong>RowState</strong>: Added, Modified, Deleted, Unchanged. UpdateAll reads this to decide INSERT/UPDATE/DELETE.</li>
+        </ul>
+      </div>
+
+      <div class="callout success">
+        <strong>If you can do these four things, you'll pass</strong>
+        1. Write a payroll calculator with If/ElseIf for tax brackets.<br>
+        2. Build a form with validation (missing data, numeric, range).<br>
+        3. Use a For...Next loop to sum or count.<br>
+        4. Write a search procedure that scans an array and displays the found record.
+      </div>
+
+      <div class="callout danger">
+        <strong>SEN 2101 Warning</strong>
+        Remember: SEN 2101 needs its own study plan. Do NOT let this unit steal time from that one unless SEN 2101's resubmission option is resolved.
+      </div>
+
+      <div class="topic">
+        <h3><span class="num">+</span> Common Exam Questions (Predicted)</h3>
+        <ul>
+          <li>What is the difference between a property and a method?</li>
+          <li>Explain the Input-Process-Output model with an example.</li>
+          <li>What is the difference between ByVal and ByRef?</li>
+          <li>Write code that validates a textbox is numeric and between 0 and 60.</li>
+          <li>What is the difference between an If statement and a Select Case?</li>
+          <li>Write a For...Next loop that computes compound interest.</li>
+          <li>What is the difference between a Sub procedure and a Function procedure?</li>
+          <li>Explain how to search an array for a value (table lookup).</li>
+          <li>What is a Structure? Give an example.</li>
+          <li>Explain the difference between a 1D and 2D array.</li>
+          <li>What is the difference between a ListBox and a ComboBox?</li>
+          <li>Explain the four RowState values in ADO.NET.</li>
+          <li>What is the purpose of a BindingSource?</li>
+          <li>Why does data validation need AndAlso instead of And?</li>
+          <li>What's the difference between Option Strict On and Off?</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="bottom-nav">
+    <a href="index.html" class="nav-btn">
+      <i class="fas fa-house"></i> Home
+    </a>
+    <button class="nav-btn primary" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      <i class="fas fa-arrow-up"></i> Top
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const target = tab.dataset.tab;
+      sections.forEach(s => s.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
