@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Study Hub · 12-Day Exam Prep</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box;
+      font-family:'Inter','Segoe UI',system-ui,sans-serif;
+      -webkit-tap-highlight-color:transparent; }
+  :root{
+    --primary:#1a2744;
+    --primary-light:#2a3b5f;
+    --accent:#b9852c;
+    --accent-light:#d4a04a;
+    --accent-soft:rgba(185,133,44,0.10);
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#1a2744;
+    --text-muted:#6b7a99;
+    --text-light:#93a2c0;
+    --border:#e4e9f2;
+    --shadow:0 2px 10px rgba(26,39,68,0.06);
+    --danger:#ef4444;
+    --success:#22c55e;
+    --warn:#f59e0b;
+  }
+  html, body { background: var(--bg); }
+  body {
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .phone {
+    width: 100%;
+    max-width: 428px;
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    padding: 22px 18px 20px;
+    position: relative;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.15);
+  }
+  .brand-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(185,133,44,0.18);
+    border: 1px solid rgba(185,133,44,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--accent-light);
+    flex-shrink: 0;
+  }
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+    color: #fff;
+    line-height: 1.15;
+  }
+  .sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.6px;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .day-counter {
+    position: absolute;
+    top: 24px; right: 18px;
+    background: rgba(185,133,44,0.18);
+    border: 1px solid rgba(185,133,44,0.5);
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 58px;
+  }
+  .day-counter-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; font-size: 16px;
+    color: var(--accent-light);
+    line-height: 1;
+  }
+  .day-counter-lbl {
+    font-size: 8px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-weight: 600;
+  }
+
+  /* MAIN SCROLL */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 16px 100px;
+  }
+  main::-webkit-scrollbar { width: 0; }
+
+  /* SECTION HEADS */
+  .section-head {
+    display: flex; align-items: center; gap: 10px;
+    margin: 20px 0 12px;
+  }
+  .section-head:first-child { margin-top: 0; }
+  .section-head h2 {
+    font-weight: 800; font-size: 13px;
+    letter-spacing: 0.2px;
+    color: var(--text);
+  }
+  .section-head .line {
+    flex: 1; height: 1px; background: var(--border);
+  }
+  .section-head .badge {
+    font-weight: 700; font-size: 9px;
+    color: var(--accent);
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* FEATURED */
+  .feature {
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    box-shadow: 0 10px 24px rgba(26,39,68,0.20);
+    position: relative;
+    padding: 18px;
+    margin-bottom: 6px;
+  }
+  .feature::before {
+    content:'';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(185,133,44,0.12);
+  }
+  .feature-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(185,133,44,0.20);
+    padding: 5px 10px; border-radius: 6px;
+    font-weight: 700; font-size: 9px;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 14px;
+    position: relative;
+    border: 1px solid rgba(185,133,44,0.3);
+  }
+  .feature-day {
+    font-weight: 800; font-size: 24px;
+    color: #fff; letter-spacing: -0.3px;
+    line-height: 1.1;
+    position: relative;
+  }
+  .feature-title {
+    font-weight: 700; font-size: 15px;
+    color: #fff; letter-spacing: 0.1px;
+    line-height: 1.35;
+    margin-top: 8px;
+    position: relative;
+  }
+  .feature-units {
+    font-size: 12px;
+    color: rgba(255,255,255,0.78);
+    margin-top: 12px;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  /* PROGRESS */
+  .progress-strip {
+    display: flex; height: 6px; border-radius: 6px;
+    overflow: hidden; margin: 14px 0 8px;
+    background: var(--border);
+  }
+  .progress-seg { height: 100%; }
+
+  /* TABS */
+  .tabs {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .tab-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 12px;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+    font-family: inherit;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+  }
+  .tab-btn:active { transform: scale(0.97); }
+  .tab-btn:hover { border-color: var(--accent); }
+  .tab-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+    background: var(--accent-soft);
+    border: 1px solid rgba(185,133,44,0.25);
+    color: var(--accent);
+  }
+  .tab-info { min-width: 0; flex: 1; }
+  .tab-code {
+    font-weight: 800; font-size: 11px;
+    color: var(--text);
+    letter-spacing: 0.2px;
+  }
+  .tab-name {
+    font-size: 10px; color: var(--text-muted);
+    margin-top: 2px; line-height: 1.2;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* SCHEDULE CARD */
+  .day-card {
+    background: var(--card);
+    border-radius: 14px;
+    border-left: 4px solid var(--border);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow);
+  }
+  .day-card.urgent { border-left-color: var(--danger); }
+  .day-card.priority { border-left-color: var(--warn); }
+  .day-card.safe { border-left-color: var(--success); }
+  .day-card.review { border-left-color: var(--accent); }
+  .day-head {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 8px;
+  }
+  .day-head h3 {
+    font-weight: 800; font-size: 12px;
+    color: var(--text); letter-spacing: 0.1px;
+  }
+  .day-head .tag {
+    font-weight: 700; font-size: 9px;
+    padding: 3px 8px; border-radius: 5px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .tag-urgent { background: rgba(239,68,68,0.12); color:#dc2626; }
+  .tag-priority { background: rgba(245,158,11,0.14); color:#b45309; }
+  .tag-safe { background: rgba(34,197,94,0.12); color:#15803d; }
+  .tag-review { background: var(--accent-soft); color: var(--accent); }
+  .day-body {
+    font-size: 12.5px; color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .day-body strong { color: var(--text); font-weight: 700; }
+  .time-slot {
+    display: inline-block;
+    font-weight: 700; font-size: 9px;
+    background: var(--bg);
+    padding: 3px 8px; border-radius: 5px;
+    margin-right: 6px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    border: 1px solid var(--border);
+  }
+
+  /* TIP */
+  .tip {
+    background: linear-gradient(135deg, rgba(185,133,44,0.08), rgba(185,133,44,0.02));
+    border: 1px solid rgba(185,133,44,0.3);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 16px;
+    display: flex; gap: 12px;
+  }
+  .tip-icon {
+    font-size: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .tip-text {
+    font-size: 12px; color: var(--text);
+    line-height: 1.55;
+  }
+  .tip-text strong {
+    display: block;
+    font-weight: 800; font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.6px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <header>
+    <div class="brand-row">
+      <div class="brand-icon"><i class="fas fa-book-open"></i></div>
+      <div>
+        <h1>Study Hub</h1>
+        <div class="sub">12‑Day Exam Prep</div>
+      </div>
+    </div>
+    <div class="day-counter">
+      <div class="day-counter-num" id="daysLeft">12</div>
+      <div class="day-counter-lbl">Days</div>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section-head">
+      <h2>Today's Focus</h2>
+      <div class="badge">Day 1</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-label"><i class="fas fa-bullseye"></i> Kick‑Off</div>
+      <div class="feature-day">Day 1 · Mon</div>
+      <div class="feature-title">Setup + CPP 2202 Deep Dive</div>
+      <div class="feature-units">
+        Morning: Contact lecturer re SEN 2101<br>
+        Night: CPP 2202 — VB.Net basics
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>Units</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="tabs">
+      <a class="tab-btn" href="vb.html">
+        <div class="tab-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">CPP 2202</div>
+          <div class="tab-name">VB.Net Programming</div>
+        </div>
+      </a>
+      <a class="tab-btn" href="#" onclick="alert('Send me the CUU 2201 PDFs to build this page.'); return false;">
+        <div class="tab-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">CUU 2201</div>
+          <div class="tab-name">Entrepreneurship</div>
+        </div>
+      </a>
+      <a class="tab-btn" href="#" onclick="alert('Send me the DSA 2204 PDFs to build this page.'); return false;">
+        <div class="tab-icon"><i class="fas fa-brain"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">DSA 2204</div>
+          <div class="tab-name">Artificial Intelligence</div>
+        </div>
+      </a>
+      <a class="tab-btn" href="#" onclick="alert('Send me the SEN 2101 PDFs to build this page.'); return false;">
+        <div class="tab-icon"><i class="fas fa-clipboard-list"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">SEN 2101</div>
+          <div class="tab-name">Software Engineering</div>
+        </div>
+      </a>
+      <a class="tab-btn" href="#" onclick="alert('Send me the SEN 2201 PDFs to build this page.'); return false;">
+        <div class="tab-icon"><i class="fas fa-desktop"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">SEN 2201</div>
+          <div class="tab-name">Human‑Computer Interaction</div>
+        </div>
+      </a>
+      <a class="tab-btn" href="#" onclick="alert('Send me the STU 2103 PDFs to build this page.'); return false;">
+        <div class="tab-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="tab-info">
+          <div class="tab-code">STU 2103</div>
+          <div class="tab-name">Networking Essentials</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="section-head">
+      <h2>Time Allocation</h2>
+      <div class="line"></div>
+    </div>
+    <div class="progress-strip">
+      <div class="progress-seg" style="width:25%; background:#3b82f6;"></div>
+      <div class="progress-seg" style="width:15%; background:#8b5cf6;"></div>
+      <div class="progress-seg" style="width:10%; background:#eab308;"></div>
+      <div class="progress-seg" style="width:15%; background:#ef4444;"></div>
+      <div class="progress-seg" style="width:15%; background:#22c55e;"></div>
+      <div class="progress-seg" style="width:20%; background:#f97316;"></div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; font-size:11px; color:var(--text-muted); margin-top:10px;">
+      <div><i class="fas fa-laptop-code" style="color:#3b82f6; margin-right:6px;"></i>CPP 2202 — 25%</div>
+      <div><i class="fas fa-chart-line" style="color:#8b5cf6; margin-right:6px;"></i>CUU 2201 — 15%</div>
+      <div><i class="fas fa-brain" style="color:#eab308; margin-right:6px;"></i>DSA 2204 — 10%</div>
+      <div><i class="fas fa-clipboard-list" style="color:#ef4444; margin-right:6px;"></i>SEN 2101 — 15%</div>
+      <div><i class="fas fa-desktop" style="color:#22c55e; margin-right:6px;"></i>SEN 2201 — 15%</div>
+      <div><i class="fas fa-network-wired" style="color:#f97316; margin-right:6px;"></i>STU 2103 — 20%</div>
+    </div>
+
+    <div class="section-head">
+      <h2>12‑Day Schedule</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="day-card urgent">
+      <div class="day-head">
+        <h3>Day 1 · Monday</h3>
+        <div class="tag tag-urgent">Urgent</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> Contact lecturer re <strong>SEN 2101</strong> (resubmission? extra CAT?)<br>
+        <span class="time-slot">PM</span> CPP 2202 — VB.Net basics recap
+      </div>
+    </div>
+
+    <div class="day-card priority">
+      <div class="day-head">
+        <h3>Day 2 · Tuesday</h3>
+        <div class="tag tag-priority">Priority</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> STU 2103 — OSI, TCP/IP<br>
+        <span class="time-slot">PM</span> SEN 2201 — HCI principles
+      </div>
+    </div>
+
+    <div class="day-card priority">
+      <div class="day-head">
+        <h3>Day 3 · Wednesday</h3>
+        <div class="tag tag-priority">Priority</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> DSA 2204 — AI concepts<br>
+        <span class="time-slot">PM</span> CPP 2202 — VB.Net arrays recap
+      </div>
+    </div>
+
+    <div class="day-card priority">
+      <div class="day-head">
+        <h3>Day 4 · Thursday</h3>
+        <div class="tag tag-priority">Priority</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> CUU 2201 — Business plans<br>
+        <span class="time-slot">PM</span> STU 2103 — Subnetting
+      </div>
+    </div>
+
+    <div class="day-card review">
+      <div class="day-head">
+        <h3>Day 5 · Friday (2 hrs)</h3>
+        <div class="tag tag-review">Light</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">PM</span> SEN 2101 (if salvageable) + mixed past paper
+      </div>
+    </div>
+
+    <div class="day-card safe">
+      <div class="day-head">
+        <h3>Day 6 · Saturday</h3>
+        <div class="tag tag-safe">Rest</div>
+      </div>
+      <div class="day-body">No scheduled study — recharge.</div>
+    </div>
+
+    <div class="day-card urgent">
+      <div class="day-head">
+        <h3>Day 7 · Sunday</h3>
+        <div class="tag tag-urgent">Urgent</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> CPP 2202 — code by hand<br>
+        <span class="time-slot">PM</span> STU 2103 — network security
+      </div>
+    </div>
+
+    <div class="day-card priority">
+      <div class="day-head">
+        <h3>Day 8 · Monday</h3>
+        <div class="tag tag-priority">Priority</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> STU 2103 — troubleshooting<br>
+        <span class="time-slot">PM</span> SEN 2101 — SDLC + UML
+      </div>
+    </div>
+
+    <div class="day-card priority">
+      <div class="day-head">
+        <h3>Day 9 · Tuesday</h3>
+        <div class="tag tag-priority">Priority</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> CUU 2201 — past papers<br>
+        <span class="time-slot">PM</span> CPP 2202 — past papers
+      </div>
+    </div>
+
+    <div class="day-card review">
+      <div class="day-head">
+        <h3>Day 10 · Wednesday</h3>
+        <div class="tag tag-review">Review</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> DSA 2204 — past papers<br>
+        <span class="time-slot">PM</span> SEN 2201 — past papers
+      </div>
+    </div>
+
+    <div class="day-card review">
+      <div class="day-head">
+        <h3>Day 11 · Thursday</h3>
+        <div class="tag tag-review">Review</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> SEN 2101 — past papers<br>
+        <span class="time-slot">PM</span> Weak topics from all units
+      </div>
+    </div>
+
+    <div class="day-card review">
+      <div class="day-head">
+        <h3>Day 12 · Friday</h3>
+        <div class="tag tag-review">Final</div>
+      </div>
+      <div class="day-body">
+        <span class="time-slot">AM</span> Summary sheets only — no new material<br>
+        <span class="time-slot">PM</span> Sleep early, prep for exams
+      </div>
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon"><i class="fas fa-triangle-exclamation"></i></div>
+      <div class="tip-text">
+        <strong>SEN 2101 Warning</strong>
+        With 19.5/50 coursework, a 70% final is mathematically impossible unless there's a resubmission. Resolve this on Day 1 — don't waste study time.
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const target = new Date();
+  target.setDate(target.getDate() + 12);
+  const diff = Math.max(0, Math.ceil((target - new Date()) / (1000*60*60*24)));
+  document.getElementById('daysLeft').textContent = diff;
+</script>
+</body>
+</html>
